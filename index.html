@@ -42,7 +42,7 @@
     <main>
         <!-- Hero Section -->
         <!-- Чтобы изменить фоновое изображение, поменяйте путь в url(...) ниже на свое изображение (например, img/my-photo.jpg) -->
-        <section id="home" class="hero" style="background-image: url('img/hero-bg.jpg');">
+        <section id="home" class="hero" style="background-image: url('img/hero-bg.jpeg');">
             <div class="hero-content">
                 <h1 class="hero-title">Rakurs Production</h1>
                 <p class="hero-subtitle">Үздік фотостудия 2025</p>
@@ -60,9 +60,12 @@
                 <h2 class="section-title fade-in">Біздің Қызметтер</h2>
                 <div class="services-grid">
                     <!-- Виньетка -->
-                    <div class="service-card fade-in">
+                    <div id="vignette-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/vinetka.jpg" alt="Виньетка">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Мысалдарды көру (Смотреть примеры)</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Виньетка</h3>
@@ -117,7 +120,7 @@
                     <!-- Отбасылық фотосет -->
                     <div class="service-card fade-in">
                         <div class="service-img">
-                            <img src="img/family.JPG.jpeg" alt="Отбасылық фотосет">
+                            <img src="img/family3.jpeg" alt="Отбасылық фотосет">
                         </div>
                         <div class="service-content">
                             <h3>Отбасылық фотосет</h3>
@@ -135,33 +138,33 @@
                 <div class="locations-grid">
                     <!-- Location Card 1 -->
                     <div class="location-card fade-in" data-location="1">
-                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop" alt="Циклорама залы">
+                        <img src="img/ciclo3.jpg" alt="Циклорама залы">
                         <div class="location-info">
-                            <h3>Циклорама залы</h3>
+                            <h3>Циклорама локациясы</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 2 -->
                     <div class="location-card fade-in" data-location="2">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Классика залы">
+                        <img src="img/jet1.jpg" alt="JET">
                         <div class="location-info">
-                            <h3>Классика залы</h3>
+                            <h3>JET</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 3 -->
                     <div class="location-card fade-in" data-location="3">
-                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Лофт залы">
+                        <img src="img/sch1.jpg" alt="Лофт залы">
                         <div class="location-info">
-                            <h3>Лофт залы</h3>
+                            <h3>School</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 4 -->
                     <div class="location-card fade-in" data-location="4">
-                        <img src="https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=800&auto=format&fit=crop" alt="Прованс залы">
+                        <img src="img/ft1.jpg" alt="Прованс залы">
                         <div class="location-info">
-                            <h3>Прованс залы</h3>
+                            <h3>Фан клуб</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
@@ -169,15 +172,31 @@
                     <div class="location-card fade-in" data-location="5">
                         <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop" alt="Балалар залы">
                         <div class="location-info">
-                            <h3>Балалар залы</h3>
+                            <h3>Этно</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 6 -->
                     <div class="location-card fade-in" data-location="6">
-                        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=800&auto=format&fit=crop" alt="Минимализм залы">
+                        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=800&auto=format&fit=crop" alt="Мун">
                         <div class="location-info">
-                            <h3>Минимализм залы</h3>
+                            <h3>Мун</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
+                        </div>
+                    </div>
+                    <!-- Location Card 7 -->
+                    <div class="location-card fade-in" data-location="7">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Жаңа локация 1">
+                        <div class="location-info">
+                            <h3>Red</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
+                        </div>
+                    </div>
+                    <!-- Location Card 8 -->
+                    <div class="location-card fade-in" data-location="8">
+                        <img src="https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=800&auto=format&fit=crop" alt="Жаңа локация 2">
+                        <div class="location-info">
+                            <h3>Hotel</h3>
                             <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
@@ -186,70 +205,6 @@
         </section>
 
         <!-- Vignettes Section (Interactive 3D Book) -->
-        <section id="vignettes" class="section bg-light overflow-hidden">
-            <div class="container">
-                <h2 class="section-title fade-in">Біздің Виньеткалар</h2>
-                <div class="vignettes-container fade-in">
-                    <div class="books-selector">
-                        <button class="book-btn active" data-book="1">Балабақша</button>
-                        <button class="book-btn" data-book="2">9 сынып</button>
-                        <button class="book-btn" data-book="3">Мейрамхана</button>
-                        <button class="book-btn" data-book="4">ФК Ақтөбе</button>
-                        <button class="book-btn" data-book="5">VIP сынып</button>
-                        <button class="book-btn" data-book="6">125 High School</button>
-                        <button class="book-btn" data-book="7">4 сынып</button>
-                        <button class="book-btn" data-book="8">Жас Маман</button>
-                        <button class="book-btn" data-book="9">Мед колледж</button>
-                        <button class="book-btn" data-book="10">11 сынып</button>
-                    </div>
-                    
-                    <div class="book-wrapper">
-                        <div class="book">
-                            <!-- Page 1 (Front Cover) -->
-                            <div class="page turned">
-                                <div class="front cover luxury-cover">
-                                    <div class="cover-content">
-                                        <div class="cover-glow"></div>
-                                        <h2 id="book-title-display">Балабақша</h2>
-                                        <p class="subtitle-vignette">Эксклюзивті виньетка</p>
-                                    </div>
-                                </div>
-                                <div class="back">
-                                    <img src="https://images.unsplash.com/photo-1541703649580-994c6f50cddb?q=80&w=600&auto=format&fit=crop" alt="Page 1">
-                                </div>
-                            </div>
-                            
-                            <!-- Page 2 -->
-                            <div class="page">
-                                <div class="front">
-                                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5ce2522a1?q=80&w=600&auto=format&fit=crop" alt="Page 2">
-                                </div>
-                                <div class="back">
-                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop" alt="Page 3">
-                                </div>
-                            </div>
-
-                            <!-- Page 3 -->
-                            <div class="page">
-                                <div class="front">
-                                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop" alt="Page 4">
-                                </div>
-                                <div class="back cover back-cover luxury-cover">
-                                    <div class="cover-content">
-                                        <div class="logo-small">Rakurs Production</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="book-controls">
-                        <button id="prev-btn" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Артқа</button>
-                        <button id="next-btn" class="btn btn-primary">Алға <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Why Choose Us / Advantage -->
         <section id="why-us" class="section">
             <div class="container">
@@ -389,6 +344,86 @@
                 </div>
             </div>
         </section>
+
+        <!-- Vignette Full Modal -->
+        <div id="vignette-modal" class="modal full-modal">
+            <div class="full-modal-wrapper">
+                <span class="close-modal close-vignette">&times;</span>
+                <div class="full-modal-header">
+                    <h2>Виньетка макеттері мен бағалары</h2>
+                    </div>
+                <nav class="vignette-sticky-nav">
+                        <ul>
+                            <li><a href="#v-11-9">11-9 сынып</a></li>
+                            <li><a href="#v-jas">Жас түлектерге</a></li>
+                            <li><a href="#v-bastauysh">Бастауышпен қоштасу</a></li>
+                            <li><a href="#v-sadik">Бала-бақшамен қоштасу</a></li>
+                            <li><a href="#v-price">Прайс-лист</a></li>
+                        </ul>
+                    </nav>
+                <!-- Scrollable Content -->
+                <div class="full-modal-body">
+                    <!-- 11-9 сынып -->
+                    <section id="v-11-9" class="v-modal-section">
+                        <h3>11-9 сынып виньеткалары</h3>
+                        <p>Оқушыларға арналған стильді және заманауи макеттер.</p>
+                        <div class="v-gallery">
+                            <img src="https://images.unsplash.com/photo-1523580846011-d3a5ce2522a1?q=80&w=800" alt="11-9 сынып пример 1">
+                            <img src="https://images.unsplash.com/photo-1541703649580-994c6f50cddb?q=80&w=800" alt="11-9 сынып пример 2">
+                        </div>
+                    </section>
+                    
+                    <!-- Жас түлектерге -->
+                    <section id="v-jas" class="v-modal-section bg-light">
+                        <h3>Жас түлектерге</h3>
+                        <p>Студенттер мен колледж бітірушілеріне арналған эксклюзивті дизайн.</p>
+                        <div class="v-gallery">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800" alt="Жас түлектерге 1">
+                            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800" alt="Жас түлектерге 2">
+                        </div>
+                    </section>
+
+                    <!-- Бастауышпен қоштасу -->
+                    <section id="v-bastauysh" class="v-modal-section">
+                        <h3>Бастауышпен қоштасу</h3>
+                        <p>Кіші сыныпты бітірушілердің алғашқы маңызды сәттері.</p>
+                        <div class="v-gallery">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800" alt="Бастауышпен қоштасу 1">
+                            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800" alt="Бастауышпен қоштасу 2">
+                        </div>
+                    </section>
+
+                    <!-- Бала-бақшамен қоштасу -->
+                    <section id="v-sadik" class="v-modal-section bg-light">
+                        <h3>Бала-бақшамен қоштасу</h3>
+                        <p>Кішкентай бүлдіршіндерге арналған ең жарқын және қызықты дизайн.</p>
+                        <div class="v-gallery">
+                            <img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=800" alt="Бала-бақша 1">
+                            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=800" alt="Бала-бақша 2">
+                        </div>
+                    </section>
+
+                    <!-- Прайс-лист -->
+                    <section id="v-price" class="v-modal-section">
+                        <h3>Прайс-лист</h3>
+                        <div class="v-price-table">
+                            <div class="price-item">
+                                <h4>Стандарт (1 бет / 2 бет)</h4>
+                                <p>5000 ₸ - 8000 ₸</p>
+                            </div>
+                            <div class="price-item highlight">
+                                <h4>Премиум альбом (Трюмо / Кітап)</h4>
+                                <p>12000 ₸ - 20000 ₸</p>
+                            </div>
+                            <div class="price-item">
+                                <h4>Индивидуалды фотосессия студияда</h4>
+                                <p>Келісім бойынша</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
 
         <!-- Gallery Modal for Locations -->
         <div id="location-modal" class="modal">

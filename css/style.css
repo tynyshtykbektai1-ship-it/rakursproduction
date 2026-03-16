@@ -155,7 +155,7 @@ body {
     text-align: center;
     position: relative;
     /* Установите свое фоновое изображение в html файле (style="background-image: url('...');") или здесь */
-    background: #e0e0e0 url('../img/hero-bg.jpg') center/cover no-repeat; 
+    background: #e0e0e0 url('../img/hero-bg.jpeg') center/cover no-repeat; 
     color: #fff;
 }
 
@@ -321,6 +321,8 @@ body {
 .locations-grid .location-card:nth-child(4) { transition-delay: 0.4s; }
 .locations-grid .location-card:nth-child(5) { transition-delay: 0.5s; }
 .locations-grid .location-card:nth-child(6) { transition-delay: 0.6s; }
+.locations-grid .location-card:nth-child(7) { transition-delay: 0.7s; }
+.locations-grid .location-card:nth-child(8) { transition-delay: 0.8s; }
 
 /* Media Queries - Basic Mobile Nav */
 @media (max-width: 991px) {
@@ -389,7 +391,8 @@ body {
 }
 .location-card img {
     width: 100%;
-    height: 350px;
+    aspect-ratio: 3 / 4;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -451,7 +454,7 @@ body {
 }
 .service-img img {
     width: 100%;
-    height: 250px;
+    height: 380px;
     object-fit: cover;
 }
 .service-content { padding: 25px; text-align: center; }
@@ -856,6 +859,41 @@ body {
 }
 .footer-logo-img { height: 50px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; }
 
+/* Vignette Clickable Card */
+.clickable-service {
+    cursor: pointer;
+    position: relative;
+}
+.clickable-service::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    z-index: 10;
+    pointer-events: none;
+}
+.clickable-service:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(181, 136, 104, 0.25);
+    border-color: var(--accent-color);
+}
+.service-hover-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 8px 8px 0 0;
+}
+.clickable-service:hover .service-hover-overlay {
+    opacity: 1;
+}
+
 /* Modals */
 .modal {
     display: none;
@@ -866,6 +904,144 @@ body {
     backdrop-filter: blur(10px);
 }
 .modal.visible { display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+
+/* Full Screen Vignette Modal */
+.full-modal {
+    padding: 0;
+    align-items: flex-start !important;
+    overflow-y: auto;
+    background-color: #fff;
+}
+.full-modal-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    background: #fff;
+    min-height: 100vh;
+}
+.close-vignette {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background: #f7f5f2;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+}
+.full-modal-header {
+    text-align: center;
+    padding: 60px 20px 0;
+}
+.full-modal-header h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+.vignette-sticky-nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+}
+.vignette-sticky-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.vignette-sticky-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #f7f5f2;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+.vignette-sticky-nav a:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+.v-modal-section {
+    padding: 60px 20px;
+}
+.v-modal-section h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    text-align: center;
+}
+.v-modal-section p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+.v-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+.v-gallery img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+.v-gallery img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+.v-price-table {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: #f7f5f2;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+.price-item:hover {
+    transform: translateX(10px);
+}
+.price-item.highlight {
+    background: linear-gradient(135deg, #dfb48c 0%, #B58868 100%);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(181, 136, 104, 0.4);
+}
+.price-item h4 { font-size: 1.2rem; font-weight: 500; }
+.price-item p { margin-bottom: 0; font-size: 1.3rem; font-weight: bold; color: inherit; }
+
+@media (max-width: 768px) {
+    .vignette-sticky-nav ul { gap: 10px; }
+    .vignette-sticky-nav a { padding: 8px 15px; font-size: 0.8rem; }
+    .price-item { flex-direction: column; text-align: center; gap: 10px; }
+    .full-modal-header h2 { font-size: 2rem; }
+}
+
 .close-modal {
     position: absolute;
     top: 30px; right: 40px;
@@ -884,8 +1060,8 @@ body {
 .slider {
     display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.slide { min-width: 100%; height: 60vh; max-height: 700px; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide { min-width: 100%; height: 75vh; max-height: 800px; background: #000; }
+.slide img { width: 100%; height: 100%; object-fit: contain; }
 .slider-btn {
     position: absolute;
     top: 50%; transform: translateY(-50%);
@@ -915,3 +1091,37 @@ body {
     .section-title { font-size: 2rem; }
 }
 
+
+/* VIGNETTE 3D BOOK DESK SCENE */
+.desk-bg { background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%); padding: 60px 0; position: relative; border-radius: 12px; margin-bottom: 40px; box-shadow: inset 0 10px 30px rgba(0,0,0,0.5); }
+.desk-environment { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; perspective: 1500px; }
+.book-wrapper.realistic { transform: rotateX(25deg) rotateY(-10deg) translateZ(0); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.6); background: #e0d9c8; border-radius: 4px; }
+.book-wrapper.realistic:hover { transform: rotateX(15deg) rotateY(-5deg) translateZ(30px); box-shadow: 20px 35px 50px rgba(0, 0, 0, 0.7); }
+.book-wrapper.realistic::before { content: ""; position: absolute; top: 5px; left: -15px; width: 15px; height: calc(100% - 10px); background: linear-gradient(to right, #2c2520, #423830); transform-origin: right; transform: skewY(45deg); z-index: 10; border-radius: 4px 0 0 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.4); }
+.book-wrapper.realistic::after { content: ""; position: absolute; bottom: -15px; left: -8px; width: 100%; height: 15px; background: linear-gradient(to bottom, #d4ccb8, #bba889); transform-origin: top; transform: skewX(45deg); border-radius: 0 0 4px 4px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); }
+.page .front.rigid, .page .back.rigid { background: #111 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMjIyIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMNCA0Wk00IDBMMCA0WiIgc3Ryb2tlPSIjMTExIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+"); border: 3px solid #000; }
+.rigid .cover-content h2 { font-size: 2.5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-color); text-shadow: 0 2px 4px rgba(0,0,0,0.8); position: relative; z-index: 1; text-align: center; }
+.rigid .cover-glow { position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.1), rgba(255,255,255,0)); transform: skewX(-20deg); animation: luxuriousGlow 6s infinite; }
+@keyframes luxuriousGlow { 0% { left: -100%; } 50% { left: 200%; } 100% { left: 200%; } }
+.page-content { padding: 2rem; height: 100%; display: flex; flex-direction: column; justify-content: center; background-color: #faf9f5; background-image: linear-gradient(90deg, transparent 95%, rgba(0,0,0,0.03) 100%); }
+.page-content h3 { margin-bottom: 1.5rem; color: var(--text-color); font-family: var(--font-secondary); text-align: center; font-size: 1.8rem; border-bottom: 1px solid var(--accent-color); padding-bottom: 10px; }
+.page-content img { border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 280px; object-fit: cover; margin: auto; }
+.book-controls .btn { backdrop-filter: blur(5px); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; margin: 0 10px; cursor: pointer; }
+.book-controls .btn:hover { background: var(--accent-color); border-color: var(--accent-color); }
+
+/* VIGNETTE PRICE LIST */
+.price-desc { text-align: center; color: #fff; margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.8; }
+.v-price-table { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.price-item { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 2.5rem 1.5rem 1.5rem; display: flex; flex-direction: column; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.price-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-color: var(--accent-color); }
+.price-item.highlight.premium-glow { background: linear-gradient(145deg, #1e1a15 0%, #2a221a 100%); border: 2px solid var(--accent-color); box-shadow: 0 8px 30px rgba(181, 136, 104, 0.2); transform: scale(1.05); z-index: 2; }
+.price-item.highlight.premium-glow:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 40px rgba(181, 136, 104, 0.4); }
+.price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: #fff; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); white-space: nowrap; }
+.price-header h4 { color: #fff; font-size: 1.4rem; margin-bottom: 1.5rem; text-align: center; font-family: var(--font-secondary); }
+.price-body { flex-grow: 1; margin-bottom: 2rem; }
+.price-body ul { list-style: none; padding: 0; }
+.price-body ul li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; color: #ccc; font-size: 0.95rem; line-height: 1.4; }
+.price-body ul li::before { content: r"\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--accent-color); font-size: 0.9rem; }
+.price-footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+.price-val { font-size: 2rem; font-weight: 700; color: var(--accent-color); display: block; }
+@media (max-width: 768px) { .price-item.highlight.premium-glow { transform: scale(1); } .price-item.highlight.premium-glow:hover { transform: translateY(-5px); } }

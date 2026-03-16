@@ -151,11 +151,74 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     let slidesCount = 0;
 
-    // Mock pictures for localions
+    // Фотографии для каждой локации. Вы можете прописать сюда свои пути к изображениям, например: 'img/locations/loft-1.jpg'
     const locationImages = {
-        '1': ['https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200'],
-        '2': ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200'],
-        'default': ['https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200', 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200']
+        // Локация 1: Циклорама залы
+        '1': [
+            'img/ciclo3.jpg', 
+            'img/ciclo4.jpg',
+            'img/ciclo2.jpeg',
+            'img/ciclo1.PNG',
+            'img/location1-5.jpg'
+        ],
+        // Локация 2: JET залы
+        '2': [
+            'img/jet1.jpg', 
+            'img/jet2.jpg',
+            'img/jet3.jpg',
+            'img/jet4.jpg',
+            'img/jet5.jpg'
+        ],
+        // Локация 3: School залы
+        '3': [
+            'img/sch1.jpg',
+            'img/sch2.jpg',
+            'img/sch3.jpg',
+            'img/sch4.jpg',
+            'img/sch5.jpg'
+        ],
+        // Локация 4: Прованс залы
+        '4': [
+            'img/ft1.jpg',
+            'img/ft2.jpg',
+            'img/ft3.jpg',
+            'img/ft6.jpg',
+            'img/ft5.jpg'
+        ],
+        // Локация 5: Балалар залы
+        '5': [
+            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200',
+            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
+            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
+            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200'
+        ],
+        // Локация 6: Минимализм залы
+        '6': [
+            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
+            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200',
+            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+        ],
+        // Локация 7: Жаңа локация 1
+        '7': [
+            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
+            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200',
+            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+        ],
+        // Локация 8: Жаңа локация 2
+        '8': [
+            'https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=1200',
+            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
+            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
+            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+        ],
+        'default': [
+            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200', 
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200', 
+            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
+            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200'
+        ]
     };
 
     const openModal = (locationId) => {
@@ -232,6 +295,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if(e.target === modal) closeModal();
     });
 
+    // --- Vignette Full Modal Logic ---
+    const vignetteCard = document.getElementById('vignette-card');
+    const vignetteModal = document.getElementById('vignette-modal');
+    const closeVignetteBtn = document.querySelector('.close-vignette');
+
+    if (vignetteCard && vignetteModal) {
+        vignetteCard.addEventListener('click', () => {
+            vignetteModal.classList.add('visible');
+            document.body.classList.add('no-scroll');
+        });
+
+        closeVignetteBtn.addEventListener('click', () => {
+            vignetteModal.classList.remove('visible');
+            document.body.classList.remove('no-scroll');
+        });
+
+        vignetteModal.addEventListener('click', (e) => {
+            if(e.target === vignetteModal) {
+                vignetteModal.classList.remove('visible');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+
+        // Smooth scroll for internal links in vignette modal
+        const vignetteNavLinks = document.querySelectorAll('.vignette-sticky-nav a');
+        vignetteNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    // Calculate position accounting for the sticky nav height (~80px)
+                    const navHeight = document.querySelector('.vignette-sticky-nav').offsetHeight;
+                      const container = document.querySelector('.full-modal-body');
+                    // Scroll container instead of window since modal has overflow-y
+                    container.scrollTo({
+                        top: targetSection.offsetTop - navHeight - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
 
     // --- Booking Calendar Integration (Google Sheets parser) ---
     const fetchDatesBtn = document.getElementById('fetch-dates-btn');
