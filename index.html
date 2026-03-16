@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rakurs Production | Студия в Актобе</title>
+    <title>Rakurs Production | Ақтөбедегі фотостудия</title>
+<link rel="icon" href="img/logo.ico">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +16,19 @@
     <!-- Header (Navigation) -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">Rakurs</a>
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="Rakurs" class="logo-img">
+                <span class="logo-text">Rakurs</span>
+            </a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#booking">Бронирование</a></li>
-                    <li><a href="#locations">Локации</a></li>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#vignettes">Виньетки</a></li>
-                    <li><a href="#why-us">Почему мы</a></li>
-                    <li><a href="#team">Команда</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#home">Басты бет</a></li>
+                    <li><a href="#booking">Брондау</a></li>
+                    <li><a href="#locations">Локациялар</a></li>
+                    <li><a href="#services">Қызметтер</a></li>
+                    <li><a href="#vignettes">Виньеткалар</a></li>
+                    <li><a href="#why-us">Неге бізді таңдайды</a></li>
+                    <li><a href="#contacts">Байланыс</a></li>
                 </ul>
             </nav>
             <button class="burger" aria-label="Menu">
@@ -38,185 +41,144 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="home" class="hero">
+        <!-- Чтобы изменить фоновое изображение, поменяйте путь в url(...) ниже на свое изображение (например, img/my-photo.jpg) -->
+        <section id="home" class="hero" style="background-image: url('img/hero-bg.jpg');">
             <div class="hero-content">
                 <h1 class="hero-title">Rakurs Production</h1>
-                <p class="hero-subtitle">Фотостудия в Актобе</p>
+                <p class="hero-subtitle">Үздік фотостудия 2025</p>
                 <div class="hero-buttons">
-                    <a href="#booking" class="btn btn-primary">Забронировать съемку</a>
-                    <a href="#locations" class="btn btn-outline">Посмотреть локации</a>
+                    <a href="#booking" class="btn btn-primary">Түсірілімді брондау</a>
+                    <a href="#locations" class="btn btn-outline">Локацияларды көру</a>
                 </div>
             </div>
             <div class="hero-overlay"></div>
         </section>
 
-        <!-- Benefits Section (under hero) -->
-        <section id="benefits" class="benefits section">
+        <!-- Services Section -->
+        <section id="services" class="section bg-light">
             <div class="container">
-                <div class="benefits-grid">
-                    <div class="benefit-card fade-in">
-                        <i class="fa-solid fa-camera"></i>
-                        <h3>Стильные локации</h3>
+                <h2 class="section-title fade-in">Біздің Қызметтер</h2>
+                <div class="services-grid">
+                    <!-- Виньетка -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/vinetka.jpg" alt="Виньетка">
+                        </div>
+                        <div class="service-content">
+                            <h3>Виньетка</h3>
+                            <p>Мектеп виньеткалары мен бітіру альбомдарын суретке түсіру. Оқушылар мен студенттерге арналған стильді және заманауи макеттер жасау.</p>
+                        </div>
                     </div>
-                    <div class="benefit-card fade-in">
-                        <i class="fa-solid fa-users"></i>
-                        <h3>Проф. команда</h3>
+                    
+                    <!-- Love Story -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/lovestory.jpg" alt="Love Story">
+                        </div>
+                        <div class="service-content">
+                            <h3>Love Story</h3>
+                            <p>Жұптарға арналған романтикалық фотосессия. Эмоциялар мен махаббат тарихын жеткізетін атмосфералық кадрлар.</p>
+                        </div>
                     </div>
-                    <div class="benefit-card fade-in">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <h3>Современная обработка</h3>
+                    
+                    <!-- Кыз Узату -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/uzaty.jpg" alt="Қыз ұзату">
+                        </div>
+                        <div class="service-content">
+                            <h3>Қыз ұзату</h3>
+                            <p>Дәстүрлі қазақ той алдындағы рәсімі. Маңызды отбасылық сәттерді, эмоцияларды және ұлттық атмосфераны суретке түсіру.</p>
+                        </div>
                     </div>
-                    <div class="benefit-card fade-in">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        <h3>Удобное бронирование</h3>
+
+                    <!-- Той -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/toy.jpg" alt="Той">
+                        </div>
+                        <div class="service-content">
+                            <h3>Той</h3>
+                            <p>Үйлену тойлары мен салтанатты іс-шараларды түсіру. Мерекенің барлық негізгі сәттерін тіркеу.</p>
+                        </div>
                     </div>
-                    <div class="benefit-card fade-in">
-                        <i class="fa-regular fa-handshake"></i>
-                        <h3>Индивидуальный подход</h3>
+                    
+                    <!-- Топпен фотосет -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/top.jpg" alt="Топпен фотосет">
+                        </div>
+                        <div class="service-content">
+                            <h3>Топпен фотосет</h3>
+                            <p>Достарға, командаларға немесе ұжымдарға арналған топтық фотосессия. Жанды, динамикалық және атмосфералық кадрлар.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Отбасылық фотосет -->
+                    <div class="service-card fade-in">
+                        <div class="service-img">
+                            <img src="img/family.JPG.jpeg" alt="Отбасылық фотосет">
+                        </div>
+                        <div class="service-content">
+                            <h3>Отбасылық фотосет</h3>
+                            <p>Отбасылық фотосессия. Отбасылық атмосфера мен жақындықты жеткізетін жылы және шынайы фотосуреттер.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Locations Section -->
-        <section id="locations" class="section bg-light">
+        <section id="locations" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">Наши Локации</h2>
+                <h2 class="section-title fade-in">Біздің Локациялар</h2>
                 <div class="locations-grid">
                     <!-- Location Card 1 -->
                     <div class="location-card fade-in" data-location="1">
-                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop" alt="Зал Циклорама">
+                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop" alt="Циклорама залы">
                         <div class="location-info">
-                            <h3>Зал Циклорама</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
+                            <h3>Циклорама залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 2 -->
                     <div class="location-card fade-in" data-location="2">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Зал Классика">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Классика залы">
                         <div class="location-info">
-                            <h3>Зал Классика</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
+                            <h3>Классика залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 3 -->
                     <div class="location-card fade-in" data-location="3">
-                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Зал Лофт">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop" alt="Лофт залы">
                         <div class="location-info">
-                            <h3>Зал Лофт</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
+                            <h3>Лофт залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 4 -->
                     <div class="location-card fade-in" data-location="4">
-                        <img src="https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=800&auto=format&fit=crop" alt="Зал Прованс">
+                        <img src="https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=800&auto=format&fit=crop" alt="Прованс залы">
                         <div class="location-info">
-                            <h3>Зал Прованс</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
+                            <h3>Прованс залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 5 -->
                     <div class="location-card fade-in" data-location="5">
-                        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop" alt="Детский Зал">
+                        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop" alt="Балалар залы">
                         <div class="location-info">
-                            <h3>Детский Зал</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
+                            <h3>Балалар залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                     <!-- Location Card 6 -->
                     <div class="location-card fade-in" data-location="6">
-                        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=800&auto=format&fit=crop" alt="Зал Минимализм">
+                        <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=800&auto=format&fit=crop" alt="Минимализм залы">
                         <div class="location-info">
-                            <h3>Зал Минимализм</h3>
-                            <button class="btn btn-primary btn-sm view-location-btn">Посмотреть</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Наши Услуги</h2>
-                <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Love Story">
-                        </div>
-                        <div class="service-content">
-                            <h3>Love Story</h3>
-                            <p>Романтическая фотосессия для двоих, передающая вашу историю любви.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=600&auto=format&fit=crop" alt="Свадебная съемка">
-                        </div>
-                        <div class="service-content">
-                            <h3>Свадебная съемка</h3>
-                            <p>Запечатлеем самые важные моменты вашего торжества.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" alt="Индивидуальная фотосессия">
-                        </div>
-                        <div class="service-content">
-                            <h3>Индивидуальная</h3>
-                            <p>Раскрываем красоту и характер каждого с помощью студийного света.</p>
-                        </div>
-                    </div>
-
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop" alt="Семейная съемка">
-                        </div>
-                        <div class="service-content">
-                            <h3>Семейная съемка</h3>
-                            <p>Теплые и уютные фотографии для вашей семьи на долгую память.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=600&auto=format&fit=crop" alt="Портретная съемка">
-                        </div>
-                        <div class="service-content">
-                            <h3>Портретная съемка</h3>
-                            <p>Профессиональный бизнес-портрет или творческие образы.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1542458542998-1be2e5b0e4f3?q=80&w=600&auto=format&fit=crop" alt="Контент съемка">
-                        </div>
-                        <div class="service-content">
-                            <h3>Контент съемка</h3>
-                            <p>Стильный и продающий визуал для ваших социальных сетей и бренда.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1537151472251-872f2dc7a77e?q=80&w=600&auto=format&fit=crop" alt="Виньетки">
-                        </div>
-                        <div class="service-content">
-                            <h3>Виньетки</h3>
-                            <p>Креативные школьные и выпускные альбомы нового формата.</p>
-                        </div>
-                    </div>
-
-                    <div class="service-card fade-in">
-                        <div class="service-img">
-                            <img src="https://images.unsplash.com/photo-1509631179647-0c5d56224255?q=80&w=600&auto=format&fit=crop" alt="Fashion съемка">
-                        </div>
-                        <div class="service-content">
-                            <h3>Fashion съемка</h3>
-                            <p>Модельные тесты, съемка каталогов и лукбуков.</p>
+                            <h3>Минимализм залы</h3>
+                            <button class="btn btn-primary btn-sm view-location-btn">Көру</button>
                         </div>
                     </div>
                 </div>
@@ -226,19 +188,19 @@
         <!-- Vignettes Section (Interactive 3D Book) -->
         <section id="vignettes" class="section bg-light overflow-hidden">
             <div class="container">
-                <h2 class="section-title fade-in">Наши Виньетки</h2>
+                <h2 class="section-title fade-in">Біздің Виньеткалар</h2>
                 <div class="vignettes-container fade-in">
                     <div class="books-selector">
-                        <button class="book-btn active" data-book="1">Детский сад</button>
-                        <button class="book-btn" data-book="2">9 Класс</button>
-                        <button class="book-btn" data-book="3">Ресторан</button>
-                        <button class="book-btn" data-book="4">ФК Актобе</button>
-                        <button class="book-btn" data-book="5">VIP Класс</button>
+                        <button class="book-btn active" data-book="1">Балабақша</button>
+                        <button class="book-btn" data-book="2">9 сынып</button>
+                        <button class="book-btn" data-book="3">Мейрамхана</button>
+                        <button class="book-btn" data-book="4">ФК Ақтөбе</button>
+                        <button class="book-btn" data-book="5">VIP сынып</button>
                         <button class="book-btn" data-book="6">125 High School</button>
-                        <button class="book-btn" data-book="7">4 Сынып</button>
+                        <button class="book-btn" data-book="7">4 сынып</button>
                         <button class="book-btn" data-book="8">Жас Маман</button>
                         <button class="book-btn" data-book="9">Мед колледж</button>
-                        <button class="book-btn" data-book="10">11 Сынып</button>
+                        <button class="book-btn" data-book="10">11 сынып</button>
                     </div>
                     
                     <div class="book-wrapper">
@@ -248,8 +210,8 @@
                                 <div class="front cover luxury-cover">
                                     <div class="cover-content">
                                         <div class="cover-glow"></div>
-                                        <h2 id="book-title-display">Детский сад</h2>
-                                        <p class="subtitle-vignette">Эксклюзивная виньетка</p>
+                                        <h2 id="book-title-display">Балабақша</h2>
+                                        <p class="subtitle-vignette">Эксклюзивті виньетка</p>
                                     </div>
                                 </div>
                                 <div class="back">
@@ -281,8 +243,8 @@
                         </div>
                     </div>
                     <div class="book-controls">
-                        <button id="prev-btn" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Назад</button>
-                        <button id="next-btn" class="btn btn-primary">Вперед <i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="prev-btn" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Артқа</button>
+                        <button id="next-btn" class="btn btn-primary">Алға <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -291,89 +253,48 @@
         <!-- Why Choose Us / Advantage -->
         <section id="why-us" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">Почему выбирают нас</h2>
+                <h2 class="section-title fade-in">Неге бізді таңдайды</h2>
                 <div class="features-grid">
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-solid fa-building"></i></div>
                         <div>
-                            <h4>Уникальные фотолокации</h4>
-                            <p>Мы постоянно обновляем интерьер и следим за трендами, чтобы ваши кадры были неповторимыми.</p>
+                            <h4>Бірегей фотолокациялар</h4>
+                            <p>Интерьерді үнемі жаңартып, трендтерді қадағалаймыз, сіздің кадрларыңыз қайталанбас болуы үшін.</p>
                         </div>
                     </div>
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-solid fa-camera-retro"></i></div>
                         <div>
-                            <h4>Опытная команда</h4>
-                            <p>Профессиональные фотографы, стилисты и ретушеры, которые знают свое дело.</p>
+                            <h4>Тәжірибелі команда</h4>
+                            <p>Кәсіби фотографтар, стилисттер және ретушерлер өз ісінің мамандары.</p>
                         </div>
                     </div>
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-solid fa-person-rays"></i></div>
                         <div>
-                            <h4>Индивидуальный подход</h4>
-                            <p>Помогаем в позировании, подборе образа и выборе локации до начала съемки.</p>
+                            <h4>Жеке көзқарас</h4>
+                            <p>Түсірілім басталмас бұрын позалар, образ таңдау және локация бойынша көмектесеміз.</p>
                         </div>
                     </div>
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-solid fa-lightbulb"></i></div>
                         <div>
-                            <h4>Профессиональная техника</h4>
-                            <p>Premium оборудование от Profoto для создания идеального студийного света.</p>
+                            <h4>Кәсіби техника</h4>
+                            <p>Керемет студиялық жарық жасау үшін Profoto-дан Premium құрылғылар.</p>
                         </div>
                     </div>
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-solid fa-palette"></i></div>
                         <div>
-                            <h4>Качественная обработка</h4>
-                            <p>Современная цветокоррекция и естественная журнальная ретушь ваших кадров.</p>
+                            <h4>Сапалы өңдеу</h4>
+                            <p>Заманауи түс коррекциясы және кадрларыңыздың табиғи журналдық ретуші.</p>
                         </div>
                     </div>
                     <div class="feature-item fade-in">
                         <div class="feature-icon"><i class="fa-regular fa-clock"></i></div>
                         <div>
-                            <h4>Удобная запись</h4>
-                            <p>Бронь онлайн с просмотром актуальных свободных дат прямо на сайте.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title fade-in">Наша Команда</h2>
-                <div class="team-grid">
-                    <div class="team-card fade-in">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" alt="Айша">
-                        <div class="team-info">
-                            <h3>Айша</h3>
-                            <span class="role">Основатель, Art-директор</span>
-                            <p>Главный фотограф студии. Более 8 лет опыта в fashion и портретной съемке. Видит красоту в деталях.</p>
-                        </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop" alt="Азамат">
-                        <div class="team-info">
-                            <h3>Азамат</h3>
-                            <span class="role">Студийный фотограф</span>
-                            <p>Мастер студийного света. Специализируется на контентных и семейных съемках.</p>
-                        </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" alt="Дина">
-                        <div class="team-info">
-                            <h3>Дина</h3>
-                            <span class="role">Главный ретушер</span>
-                            <p>Создает журнальную обработку, сохраняя естественную текстуру кожи и цвета.</p>
-                        </div>
-                    </div>
-                    <div class="team-card fade-in">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop" alt="Салтанат">
-                        <div class="team-info">
-                            <h3>Салтанат</h3>
-                            <span class="role">Стилист, Визажист</span>
-                            <p>Помогает с подбором образов для съемок и создает идеальный макияж и укладку.</p>
+                            <h4>Ыңғайлы жазылу</h4>
+                            <p>Сайт арқылы өзекті бос күндерді көре отырып, онлайн брондау.</p>
                         </div>
                     </div>
                 </div>
@@ -383,19 +304,19 @@
         <!-- Booking Section (Calendar UI Integration) -->
         <section id="booking" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">Бронирование</h2>
+                <h2 class="section-title fade-in">Брондау</h2>
                 <div class="booking-container fade-in">
                     <div class="booking-info">
-                        <h3>Свободные даты</h3>
-                        <p>Нажмите кнопку ниже, чтобы проверить актуальное расписание свободных дат.</p>
+                        <h3>Бос күндер</h3>
+                        <p>Өзекті бос күндер кестесін тексеру үшін төмендегі батырманы басыңыз.</p>
                         <button id="fetch-dates-btn" class="btn btn-primary" style="margin-bottom: 20px;">
-                            <i class="fa-solid fa-calendar-check"></i> Показать доступные даты
+                            <i class="fa-solid fa-calendar-check"></i> Қолжетімді күндерді көрсету
                         </button>
                     </div>
                     
                     <div id="loading-spinner" style="display: none; padding: 20px;">
                         <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--accent-color);"></i>
-                        <p style="margin-top: 10px; color: #666;">Анализ расписания студии...</p>
+                        <p style="margin-top: 10px; color: #666;">Студия кестесін талдау...</p>
                     </div>
 
                     <div class="calendar-wrapper" id="calendar-wrapper" style="display: none;">
@@ -403,9 +324,9 @@
                     </div>
                     
                     <div class="booking-action" id="booking-action" style="display: none;">
-                        <p>Вы выбрали: <strong id="selected-date-display">...</strong></p>
+                        <p>Сіз таңдадыңыз: <strong id="selected-date-display">...</strong></p>
                         <a href="https://wa.me/77713434499" target="_blank" class="btn btn-primary" id="whatsapp-btn">
-                            <i class="fa-brands fa-whatsapp"></i> Написать в WhatsApp
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp-қа жазу
                         </a>
                     </div>
                 </div>
@@ -415,17 +336,17 @@
         <!-- Contacts Section -->
         <section id="contacts" class="section bg-light">
             <div class="container">
-                <h2 class="section-title fade-in">Контакты</h2>
+                <h2 class="section-title fade-in">Байланыс</h2>
                 <div class="contacts-grid">
                     <div class="contact-info fade-in">
-                        <h3>Свяжитесь с нами</h3>
-                        <p>Мы всегда рады ответить на все вопросы и помочь с бронированием.</p>
+                        <h3>Бізбен байланысыңыз</h3>
+                        <p>Біз кез келген сұрақтарға жауап беруге және брондау бойынша көмектесуге әрқашан қуаныштымыз.</p>
                         
                         <div class="contact-item">
                             <i class="fa-solid fa-location-dot"></i>
                             <div>
-                                <h4>Наш адрес</h4>
-                                <p>г. Актобе, ул. Смагулова, 9</p>
+                                <h4>Мекенжайымыз</h4>
+                                <p>Ақтөбе қ., Смағұлов к-сі, 9</p>
                             </div>
                         </div>
                         
@@ -450,22 +371,20 @@
                         </div>
                     </div>
                     
-                    <div class="contact-map fade-in">
-                        <div id="2gis-map" style="position:relative;overflow:hidden;border-radius:8px;box-shadow:var(--shadow-soft);height:100%; min-height: 400px;">
+                    <div class="contact-map fade-in" style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
+                        <div id="2gis-map" style="position:relative; overflow:hidden; border-radius:12px; box-shadow: 0 10px 30px rgba(181, 136, 104, 0.1); flex-grow: 1; min-height: 400px; border: 1px solid rgba(181, 136, 104, 0.1);">
                             <iframe 
-                                src="https://yandex.ru/map-widget/v1/?ll=57.155708%2C50.28639&z=16&pt=57.155708%2C50.28639~pm2dol" 
+                                src="https://yandex.ru/map-widget/v1/?ll=57.155708%2C50.28639&z=18&pt=57.155708%2C50.28639~pm2dol" 
                                 width="100%" 
-                                height="400" 
+                                height="100%" 
                                 frameborder="0" 
                                 allowfullscreen="true" 
-                                style="position:relative;">
+                                style="position:absolute; top:0; left:0;">
                             </iframe>
-                            <div style="position:absolute; bottom:10px; right:10px; background:#fff; padding:5px 10px; border-radius:4px; font-size:12px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;">
-                                <a href="https://2gis.kz/aktobe/search/%D0%A1%D0%BC%D0%B0%D0%B3%D1%83%D0%BB%D0%BE%D0%B2%D0%B0%209" target="_blank" style="color:#000; text-decoration:none; font-weight:bold; display:flex; align-items:center; gap: 5px;">
-                                    Открыть в 2GIS
-                                </a>
-                            </div>
                         </div>
+                        <a href="https://2gis.kz/aktobe/search/%D0%A1%D0%BC%D0%B0%D0%B3%D1%83%D0%BB%D0%BE%D0%B2%D0%B0%209" target="_blank" class="btn btn-primary btn-glow" style="display: flex; justify-content: center; align-items: center; font-size: 1.1rem; padding: 18px; font-weight: bold; border-radius: 8px;">
+                            📍 2GIS-те ашу
+                        </a>
                     </div>
                 </div>
             </div>
@@ -489,8 +408,11 @@
         <footer class="footer">
             <div class="container">
                 <div class="footer-content">
-                    <div class="footer-logo">Rakurs Production</div>
-                    <p>&copy; 2024 Все права защищены. Фотостудия в Актобе.</p>
+                    <div class="footer-logo">
+                        <img src="img/logo.png" alt="Rakurs" class="footer-logo-img">
+                        <span class="footer-logo-text">Rakurs Production</span>
+                    </div>
+                    <p>&copy; 2024 Барлық құқықтар қорғалған. Ақтөбедегі фотостудия.</p>
                 </div>
             </div>
         </footer>
