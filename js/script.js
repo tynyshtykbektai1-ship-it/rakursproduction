@@ -64,10 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         pages[i].style.zIndex = pages.length - i;
     }
 
+    
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
 
     const updateBookState = () => {
+        if (!pages.length) return;
         pages.forEach((page, index) => {
             const pageNum = index + 1;
             if (pageNum < currentPage) {
@@ -80,37 +82,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Disable/enable buttons based on state
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = currentPage > maxPages;
-        prevBtn.style.opacity = prevBtn.disabled ? 0.3 : 1;
-        nextBtn.style.opacity = nextBtn.disabled ? 0.3 : 1;
-        prevBtn.style.cursor = prevBtn.disabled ? 'default' : 'pointer';
-        nextBtn.style.cursor = nextBtn.disabled ? 'default' : 'pointer';
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage > maxPages;
+            prevBtn.style.opacity = prevBtn.disabled ? 0.3 : 1;
+            nextBtn.style.opacity = nextBtn.disabled ? 0.3 : 1;
+            prevBtn.style.cursor = prevBtn.disabled ? 'default' : 'pointer';
+            nextBtn.style.cursor = nextBtn.disabled ? 'default' : 'pointer';
+        }
     };
 
-    nextBtn.addEventListener('click', () => {
-        if (currentPage <= maxPages) {
-            currentPage++;
-            updateBookState();
-        }
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentPage <= maxPages) {
+                currentPage++;
+                updateBookState();
+            }
+        });
+    }
 
-    prevBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            updateBookState();
-        }
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updateBookState();
+            }
+        });
+    }
 
     // Make pages clickable
     pages.forEach((page, i) => {
         page.addEventListener('click', () => {
             const pageNum = i + 1;
             if (page.classList.contains('turned')) {
-                // If turned on left side, move to right
                 currentPage = pageNum;
             } else {
-                // If on right side, move left
                 currentPage = pageNum + 1;
             }
             updateBookState();
@@ -142,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Locations Gallery Modal & Slider ---
     const modal = document.getElementById('location-modal');
-    const closeModalBtn = document.querySelector('.close-modal');
+    const closeModalBtn = modal ? modal.querySelector('.close-modal') : null;
     const sliderContainer = document.querySelector('.slider');
     const prevSlideBtn = document.querySelector('.prev-slide');
     const nextSlideBtn = document.querySelector('.next-slide');
@@ -260,7 +266,50 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateSlider = () => {
-        sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        const slides = sliderContainer.querySelectorAll('.slide');
+        slides.forEach((slide, idx) => {
+            slide.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out';
+            
+            // Calculate distance from current slide (with wrap-around)
+            let diff = (idx - currentSlide + slidesCount) % slidesCount;
+
+            if (diff === 0) {
+                // Active top slide
+                slide.classList.add('active-slide');
+                slide.style.transform = 'translate(0, 0) scale(1) rotate(0deg)';
+                slide.style.opacity = '1';
+                slide.style.zIndex = '3';
+                slide.style.pointerEvents = 'auto'; // allow hover/drag
+            } else if (diff === 1) {
+                // Second slide (peeking out)
+                slide.classList.remove('active-slide');
+                slide.style.transform = 'translate(15px, 20px) scale(0.95) rotate(3deg)';
+                slide.style.opacity = '0.8';
+                slide.style.zIndex = '2';
+                slide.style.pointerEvents = 'none';
+            } else if (diff === 2) {
+                 // Third slide (peeking out more)
+                slide.classList.remove('active-slide');
+                slide.style.transform = 'translate(30px, 40px) scale(0.9) rotate(6deg)';
+                slide.style.opacity = '0.6';
+                slide.style.zIndex = '1';
+                slide.style.pointerEvents = 'none';
+            } else if (diff === slidesCount - 1) {
+                // Previous slide (hide it slightly to the left or keep it in background)
+                slide.classList.remove('active-slide');
+                slide.style.transform = 'translate(-30px, 10px) scale(0.85) rotate(-3deg)';
+                slide.style.opacity = '0';
+                slide.style.zIndex = '0';
+                slide.style.pointerEvents = 'none';
+            } else {
+                // Other hidden slides in the background
+                slide.classList.remove('active-slide');
+                slide.style.transform = 'translate(45px, 60px) scale(0.85) rotate(9deg)';
+                slide.style.opacity = '0';
+                slide.style.zIndex = '0';
+                slide.style.pointerEvents = 'none';
+            }
+        });
         document.querySelectorAll('.dot').forEach((dot, idx) => {
             dot.classList.toggle('active', idx === currentSlide);
         });
@@ -290,10 +339,108 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if(e.target === modal) closeModal();
-    });
+
+    // Cards Swipe (Drag / Touch) Logic
+    let isDragging = false;
+    let startX = 0;
+    let currentDragX = 0;
+
+    const handleDragStart = (e) => {
+        // Prevent default only if mouse to avoid text selection, touch needs passive:true
+        if(e.type === 'mousedown') e.preventDefault();
+        
+        isDragging = true;
+        startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        
+        const activeSlide = sliderContainer.querySelectorAll('.slide')[currentSlide];
+        if (activeSlide) {
+            activeSlide.style.transition = 'none';
+        }
+    };
+
+    const handleDragMove = (e) => {
+        if (!isDragging) return;
+        const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        currentDragX = x - startX;
+        
+        const activeSlide = sliderContainer.querySelectorAll('.slide')[currentSlide];
+        if (activeSlide) {
+            const rotate = currentDragX * 0.05;
+            const progress = Math.min(Math.abs(currentDragX) / (window.innerWidth / 2), 1);
+            const scale = 1 - (progress * 0.05); // slight scale down during drag
+            const opacity = 1 - (progress * 0.3); // slight fade out
+            activeSlide.style.transform = `translate(${currentDragX}px, 0) scale(${scale}) rotate(${rotate}deg)`;
+            activeSlide.style.opacity = opacity;
+            
+            // Peek the next/prev slide depending on drag direction
+            const direction = currentDragX < 0 ? 1 : -1;
+            const nextIdx = (currentSlide + direction + slidesCount) % slidesCount;
+            const nextSlide = sliderContainer.querySelectorAll('.slide')[nextIdx];
+            
+            if (nextSlide) {
+                nextSlide.style.transition = 'none';
+                if (direction === 1) {
+                    // Pulling next slide up
+                    const nextX = 15 - (15 * progress * 1.5);
+                    const nextY = 20 - (20 * progress * 1.5);
+                    const nextScale = 0.95 + (0.05 * Math.min(1, progress * 1.5));
+                    const nextRot = 3 - (3 * Math.min(1, progress * 1.5));
+                    nextSlide.style.transform = `translate(${Math.max(0, nextX)}px, ${Math.max(0, nextY)}px) scale(${Math.min(1, nextScale)}) rotate(${Math.max(0, nextRot)}deg)`;
+                } else {
+                    // Pulling prev slide in
+                    const nextX = -30 + (30 * progress * 1.5);
+                    const nextY = 10 - (10 * progress * 1.5);
+                    const nextScale = 0.85 + (0.15 * Math.min(1, progress * 1.5));
+                    const nextRot = -3 + (3 * Math.min(1, progress * 1.5));
+                    nextSlide.style.opacity = progress;
+                    nextSlide.style.transform = `translate(${Math.min(0, nextX)}px, ${Math.max(0, nextY)}px) scale(${Math.min(1, nextScale)}) rotate(${Math.min(0, nextRot)}deg)`;
+                }
+            }
+        }
+    };
+
+    const handleDragEnd = (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        // Reset all transitions
+        const slides = sliderContainer.querySelectorAll('.slide');
+        slides.forEach(slide => {
+            slide.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-out';
+        });
+
+        const threshold = 80; // px
+        if (currentDragX < -threshold) {
+             currentSlide = (currentSlide + 1) % slidesCount; 
+             updateSlider();
+        } else if (currentDragX > threshold) {
+             currentSlide = (currentSlide - 1 + slidesCount) % slidesCount;
+             updateSlider();
+        } else {
+             // snap back
+             updateSlider();
+        }
+        currentDragX = 0;
+    };
+
+    sliderContainer.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('mouseup', handleDragEnd); 
+    
+    sliderContainer.addEventListener('touchstart', handleDragStart, {passive: true});
+    window.addEventListener('touchmove', handleDragMove, {passive: true});
+    window.addEventListener('touchend', handleDragEnd);
+
+
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+    }
 
     // --- Vignette Full Modal Logic ---
     const vignetteCard = document.getElementById('vignette-card');
