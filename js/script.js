@@ -295,11 +295,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.style.zIndex = '1';
                 slide.style.pointerEvents = 'none';
             } else if (diff === slidesCount - 1) {
-                // Previous slide (hide it slightly to the left or keep it in background)
+                // Previous slide (hide it slightly to the left) stays on top while flying away
                 slide.classList.remove('active-slide');
-                slide.style.transform = 'translate(-30px, 10px) scale(0.85) rotate(-3deg)';
+                slide.style.transform = 'translate(-80px, -20px) scale(0.95) rotate(-8deg)';
                 slide.style.opacity = '0';
-                slide.style.zIndex = '0';
+                slide.style.zIndex = '4'; 
                 slide.style.pointerEvents = 'none';
             } else {
                 // Other hidden slides in the background
@@ -583,3 +583,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Initialize New Premium Mobile Features Swiper
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileFeaturesSwiper = new Swiper('.mobile-features-swiper', {
+        slidesPerView: 1.25,
+        centeredSlides: true,
+        spaceBetween: 20,
+        loop: true,
+        speed: 700,
+        grabCursor: true,
+        pagination: {
+            el: '.custom-mobile-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            576: {
+                slidesPerView: 1.6,
+                spaceBetween: 30,
+            },
+            768: {
+                slidesPerView: 2.2,
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            }
+        }
+    });
+});
+
