@@ -193,17 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         // Локация 5: Балалар залы
         '5': [
-            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200',
-            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
-            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
-            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200'
+            'img/etno.jpg',
+            'img/etno2.jpg',
+            'img/etno3.jpg',
+            'img/etno4.jpg',
+            'img/etno5.jpg'
         ],
         // Локация 6: Минимализм залы
         '6': [
-            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
-            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200',
-            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+            'img/mun1.jpg',
+            'img/mun2.jpg',
+            'img/mun3.jpg'
         ],
         // Локация 7: Жаңа локация 1
         '7': [
