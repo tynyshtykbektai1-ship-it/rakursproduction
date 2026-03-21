@@ -207,10 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         // Локация 7: Жаңа локация 1
         '7': [
-            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
-            'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200',
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200',
-            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+            'img/red1.jpg',
+            'img/red2.jpg',
+            'img/red3.jpg',
+            'img/red4.jpg',
+            'img/red5.jpg'
         ],
         // Локация 8: Жаңа локация 2
         '8': [

@@ -1182,20 +1182,24 @@ body {
 
 /* --- New Mobile Features Slider --- */
 .mobile-slider-wrapper {
-    width: 100%; /* fit inside container safely */
-    padding: 40px 0 20px 0;
-    margin: 0 auto;
-    overflow: hidden; /* prevent horizontal scroll bleed */
+    width: 100%;
+    padding: 30px 0 60px 0;
+    margin: 60px auto 0; /* Опустили слайдер ниже заголовка */
+    overflow: visible; /* Чтобы тени и масштабированные карточки не обрезались */
 }
 
 .mobile-features-swiper {
     width: 100%;
-    padding-bottom: 60px; /* Room for shadow and pagination */
-    overflow: visible; /* Let slides be visible inside wrapper bounds */
+    padding-bottom: 80px; /* Room for shadow and pagination */
+    overflow: visible !important; /* Let slides be visible */
 }
 
 .mobile-features-swiper .swiper-wrapper {
-    align-items: stretch;
+    align-items: stretch; /* Карточки одинаковой высоты */
+}
+
+.mobile-features-swiper .swiper-slide {
+    height: auto; /* Allow the slide to stretch */
 }
 
 /* Base state for all cards */
@@ -1203,21 +1207,23 @@ body {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08); /* Добавлены четкие границы */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, box-shadow 0.5s ease;
-    opacity: 0.5; /* Slightly more visible on sides */
-    transform: scale(0.85); /* Smaller on sides to contrast with active */
-    transform-origin: center bottom; /* Keep bottom aligned for all cards */
+    opacity: 0.6; /* Slightly more visible on sides */
+    transform: scale(0.9); /* Smaller on sides to contrast with active */
+    transform-origin: center top; /* Все карточки выровнены по верхнему краю */
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100%; /* Stretch card exactly to the slide's height */
 }
 
 /* Active card state */
 .mobile-features-swiper .swiper-slide-active {
     opacity: 1;
-    transform: scale(1.1); /* Significantly larger */
-    box-shadow: 0 25px 50px rgba(255, 105, 31, 0.2); /* Stronger premium soft glow */
+    transform: scale(1.05); /* Увеличение по центру */
+    border: 1px solid rgba(255, 105, 31, 0.3); /* Оранжевая граница у активного слайда */
+    box-shadow: 0 20px 40px rgba(255, 105, 31, 0.15); /* Stronger premium soft glow */
     z-index: 2;
 }
 
@@ -1270,7 +1276,7 @@ body {
 
 /* Custom modern pagination */
 .custom-mobile-pagination.swiper-pagination-bullets {
-    bottom: -15px;
+    bottom: 5px; /* Подняли пагинацию, чтобы не конфликтовала */
 }
 
 .custom-mobile-pagination .swiper-pagination-bullet {
