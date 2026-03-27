@@ -215,10 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         // Локация 8: Жаңа локация 2
         '8': [
-            'https://images.unsplash.com/photo-1598928376189-e58e37d048d6?q=80&w=1200',
-            'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
-            'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=1200',
-            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200'
+            'img/hotel2.jpg',
+            'img/hotel3.jpg',
+            'img/hotel4.jpg',
+            'img/hotel5.jpg',
+            'img/hotel1.jpg'
         ],
         'default': [
             'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200', 
