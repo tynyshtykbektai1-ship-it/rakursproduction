@@ -616,3 +616,219 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// --- Love Story Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const lsCard = document.getElementById('lovestory-card');
+    const lsModal = document.getElementById('lovestory-modal');
+    
+    if (lsCard && lsModal) {
+        const lsCloseBtn = lsModal.querySelector('.ls-close-modal');
+
+        // Open modal
+        lsCard.addEventListener('click', () => {
+            lsModal.classList.add('visible');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+
+        // Close via button
+        if (lsCloseBtn) {
+            lsCloseBtn.addEventListener('click', () => {
+                lsModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close via outside click
+        lsModal.addEventListener('click', (e) => {
+            if (e.target === lsModal) {
+                lsModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close via ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lsModal.classList.contains('visible')) {
+                lsModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+// --- Қыз ұзату Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const uzatuCard = document.getElementById('uzatu-card');
+    const uzatuModal = document.getElementById('uzatu-modal');
+    
+    if (uzatuCard && uzatuModal) {
+        const uzatuCloseBtn = uzatuModal.querySelector('.uzatu-close-modal');
+
+        uzatuCard.addEventListener('click', () => {
+            uzatuModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        if (uzatuCloseBtn) {
+            uzatuCloseBtn.addEventListener('click', () => {
+                uzatuModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+        }
+
+        uzatuModal.addEventListener('click', (e) => {
+            if (e.target === uzatuModal) {
+                uzatuModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && uzatuModal.classList.contains('visible')) {
+                uzatuModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+// --- Тойға дейінгі фотосессия Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const preweddingCard = document.getElementById('prewedding-card');
+    const preweddingModal = document.getElementById('prewedding-modal');
+    
+    if (preweddingCard && preweddingModal) {
+        const preweddingCloseBtn = preweddingModal.querySelector('.prewedding-close-modal');
+
+        preweddingCard.addEventListener('click', () => {
+            preweddingModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        if (preweddingCloseBtn) {
+            preweddingCloseBtn.addEventListener('click', () => {
+                preweddingModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+        }
+
+        preweddingModal.addEventListener('click', (e) => {
+            if (e.target === preweddingModal) {
+                preweddingModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && preweddingModal.classList.contains('visible')) {
+                preweddingModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+// --- Отбасылық фотосессия Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const familyCard = document.getElementById('family-card');
+    const familyModal = document.getElementById('family-modal');
+    
+    if (familyCard && familyModal) {
+        const familyCloseBtn = familyModal.querySelector('.family-close-modal');
+
+        familyCard.addEventListener('click', () => {
+            familyModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        if (familyCloseBtn) {
+            familyCloseBtn.addEventListener('click', () => {
+                familyModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+        }
+
+        familyModal.addEventListener('click', (e) => {
+            if (e.target === familyModal) {
+                familyModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && familyModal.classList.contains('visible')) {
+                familyModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+// --- Топпен фотосессия Modal Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const groupCard = document.getElementById('group-card');
+    const groupModal = document.getElementById('group-modal');
+    
+    if (groupCard && groupModal) {
+        const groupCloseBtn = groupModal.querySelector('.group-close-modal');
+
+        groupCard.addEventListener('click', () => {
+            groupModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        if (groupCloseBtn) {
+            groupCloseBtn.addEventListener('click', () => {
+                groupModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+        }
+
+        groupModal.addEventListener('click', (e) => {
+            if (e.target === groupModal) {
+                groupModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && groupModal.classList.contains('visible')) {
+                groupModal.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const weddingCard = document.getElementById('wedding-card');
+    const weddingModal = document.getElementById('wedding-modal');
+    const closeBtn = document.querySelector('.wedding-close-modal');
+
+    if (weddingCard && weddingModal) {
+        weddingCard.addEventListener('click', () => {
+            weddingModal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeWeddingModal = () => {
+            weddingModal.classList.remove('visible');
+            document.body.style.overflow = '';
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeWeddingModal();
+            });
+        }
+
+        weddingModal.addEventListener('click', (e) => {
+            if (e.target === weddingModal) {
+                closeWeddingModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && weddingModal.classList.contains('visible')) {
+                closeWeddingModal();
+            }
+        });
+    }
+});

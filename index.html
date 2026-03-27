@@ -77,9 +77,12 @@
                     </div>
                     
                     <!-- Love Story -->
-                    <div class="service-card fade-in">
+                    <div id="lovestory-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/lovestory.jpg" alt="Love Story" loading="lazy">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Пакеттерді көру</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Love Story</h3>
@@ -88,9 +91,12 @@
                     </div>
                     
                     <!-- Кыз Узату -->
-                    <div class="service-card fade-in">
+                    <div id="uzatu-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/uzaty.jpg" alt="Қыз ұзату" loading="lazy">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Пакеттерді көру</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Қыз ұзату</h3>
@@ -99,9 +105,12 @@
                     </div>
 
                     <!-- Той -->
-                    <div class="service-card fade-in">
+                    <div id="wedding-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/toy.jpg" alt="Той" loading="lazy">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Пакеттерді көру</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Той</h3>
@@ -110,9 +119,12 @@
                     </div>
                     
                     <!-- Топпен фотосет -->
-                    <div class="service-card fade-in">
+                    <div id="group-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/top.jpg" alt="Топпен фотосет" loading="lazy">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Бағаларын көру</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Топпен фотосет</h3>
@@ -121,13 +133,30 @@
                     </div>
                     
                     <!-- Отбасылық фотосет -->
-                    <div class="service-card fade-in">
+                    <div id="family-card" class="service-card fade-in clickable-service">
                         <div class="service-img">
                             <img src="img/family3.jpeg" alt="Отбасылық фотосет" loading="lazy">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Пакеттерді көру</span>
+                            </div>
                         </div>
                         <div class="service-content">
                             <h3>Отбасылық фотосет</h3>
                             <p>Отбасылық фотосессия. Отбасылық атмосфера мен жақындықты жеткізетін жылы және шынайы фотосуреттер.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Тойға дейінгі фотосессия -->
+                    <div id="prewedding-card" class="service-card fade-in clickable-service">
+                        <div class="service-img">
+                            <img src="img/b4toi.jpg" alt="Тойға дейінгі фотосессия" loading="lazy" onerror="this.src='img/lovestory.jpg'">
+                            <div class="service-hover-overlay">
+                                <span class="btn btn-primary btn-sm btn-glow">Пакеттерді көру</span>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Тойға дейінгі фотосессия</h3>
+                            <p>Той алдындағы ерекше сәттерді мәңгілікке сақтауға арналған арнайы фотосессия. Сіздің кіршіксіз бақытыңыз бен сезімге толы көзқарастарыңыз.</p>
                         </div>
                     </div>
                 </div>
@@ -484,6 +513,586 @@
                     <button class="slider-btn prev-slide"><i class="fa-solid fa-chevron-left"></i></button>
                     <button class="slider-btn next-slide"><i class="fa-solid fa-chevron-right"></i></button>
                     <div class="slider-dots"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Love Story Modal -->
+        <div id="lovestory-modal" class="ls-modal">
+            <div class="ls-modal-content">
+                <div class="ls-modal-header">
+                    <h2>Love Story прайс лист</h2>
+                    <span class="ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    <div class="ls-packages">
+                        <!-- Package 1 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">LOVE STORY (econom)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 4 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Видеограф</li>
+                                <li><i class="fa-solid fa-check"></i> 2 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (170–190 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (10–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>📦 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 90 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 2 -->
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">LOVE STORY (standart)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Сыртта 2 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Дрон</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Видеограф</li>
+                                <li><i class="fa-solid fa-check"></i> 4 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (200–210 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (15–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>📦 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 130 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 3 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">LOVE STORY (vip)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Сыртта 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Дрон</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Видеограф</li>
+                                <li><i class="fa-solid fa-check"></i> Сценарий</li>
+                                <li><i class="fa-solid fa-check"></i> 6 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (200–210 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (15–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>📦 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 150 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="ls-conditions">
+                        <div class="ls-cond-left">
+                            <ul>
+                                <li><i class="fa-solid fa-circle-info"></i> Ерлерге костюм, туфли берілмейді</li>
+                                <li><i class="fa-solid fa-circle-info"></i> Локациялар арасындағы транспорт сіздерден</li>
+                                <li><i class="fa-solid fa-circle-info"></i> Сыртқы локацияға өздеріңіз төлейсіздер</li>
+                            </ul>
+                        </div>
+                        <div class="ls-cond-right">
+                            <h5>Қосымша ақылы қызметтер:</h5>
+                            <ul>
+                                <li>Транспорт <span>(локацияға байланысты)</span></li>
+                                <li>Қосымша мольберт <span>(1 шт – 5000 тг)</span></li>
+                                <li>Видео шақыру <span>– 4000 тг</span></li>
+                                <li>Сайт шақыру <span>– 8000 тг</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Қыз ұзату Modal -->
+        <div id="uzatu-modal" class="ls-modal">
+            <div class="ls-modal-content">
+                <div class="ls-modal-header">
+                    <h2>Қыз ұзату прайс лист</h2>
+                    <span class="uzatu-close-modal ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    <div class="ls-packages">
+                        <!-- Package 1 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">ECONOMY</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Этно образ</li>
+                            </ul>
+                            <div class="ls-pkg-price">
+                                <span class="old-price">37 000 kzt</span>
+                                26 990 kzt
+                            </div>
+                        </div>
+
+                        <!-- Package 2 -->
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">STANDARD</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, укладка</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Этно образ</li>
+                                <li><i class="fa-solid fa-check"></i> Видео шақырту</li>
+                            </ul>
+                            <div class="ls-pkg-price highlight">
+                                <span class="old-price">48 000 kzt</span>
+                                37 990 kzt
+                            </div>
+                        </div>
+
+                        <!-- Package 3 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">VIP</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, укладка</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Этно образ</li>
+                                <li><i class="fa-solid fa-check"></i> Видео шақырту</li>
+                                <li><i class="fa-solid fa-check"></i> 2-мольберт</li>
+                            </ul>
+                            <div class="ls-pkg-price">
+                                <span class="old-price">58 000 kzt</span>
+                                47 990 kzt
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тойға дейінгі фотосессия Modal -->
+        <div id="prewedding-modal" class="ls-modal">
+            <div class="ls-modal-content">
+                <div class="ls-modal-header">
+                    <h2>Тойға дейінгі фотосессия прайс лист</h2>
+                    <span class="prewedding-close-modal ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    <div class="ls-packages prewedding-packages">
+                        <!-- Package 1 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">Тойға дейінгі фотосессия (econom)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 2 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 2 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (70–100 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (5–8 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>🎁 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия) немесе этно образ</li>
+                                    <li>Жұптық жейде немесе кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 50 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 2 -->
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">Тойға дейінгі фотосессия (standart)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 4 локация</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 2 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (170–190 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (10–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>🎁 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 75 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 3 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">Тойға дейінгі фотосессия (premium)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> 2 локация сыртта</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 4 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (170–190 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (15–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>🎁 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 100 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 4 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">Тойға дейінгі фотосессия (vip)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> 2 локация сыртта</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 4 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (200–210 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (15–20 фото)</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>🎁 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price">💰 125 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <!-- Package 5 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">Тойға дейінгі фотосессия (lux)</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Макияж, прическа</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия 3 локация</li>
+                                <li><i class="fa-solid fa-check"></i> 3 локация сыртта</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 4 мольберт</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (250–260 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (20–25 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Обед</li>
+                                <li><i class="fa-solid fa-check"></i> Транспорт</li>
+                            </ul>
+                            <div class="ls-pkg-outfits">
+                                <h5>🎁 Бізден алуға болады:</h5>
+                                <ul>
+                                    <li>Той көйлегі (фотосессия)</li>
+                                    <li>Этно образ</li>
+                                    <li>Жұптық жейде</li>
+                                    <li>Кешкі көйлек</li>
+                                </ul>
+                            </div>
+                            <div class="ls-pkg-price highlight">💰 150 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="ls-conditions">
+                        <div class="ls-cond-left">
+                            <ul>
+                                <li><i class="fa-solid fa-circle-info"></i> Жігітке костюм, туфли берілмейді</li>
+                                <li><i class="fa-solid fa-circle-info"></i> Локация араларына транспорт сіздерден</li>
+                                <li><i class="fa-solid fa-circle-info"></i> Сыртқы локацияға өздеріңіз төлейсіздер</li>
+                            </ul>
+                        </div>
+                        <div class="ls-cond-right">
+                            <h5>Қосымша ақылы қызметтер:</h5>
+                            <ul>
+                                <li>Транспорт <span>(локацияға байланысты)</span></li>
+                                <li>Қосымша мольберт <span>(1 шт – 5000 тг)</span></li>
+                                <li>Видео шақыру <span>– 4000 тг</span></li>
+                                <li>Сайт шақыру <span>– 8000 тг</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Отбасылық фотосессия Modal -->
+        <div id="family-modal" class="ls-modal">
+            <div class="ls-modal-content">
+                <div class="ls-modal-header">
+                    <h2>Отбасылық фотосессия пакеттері</h2>
+                    <span class="family-close-modal ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    <div class="ls-packages family-packages" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        <!-- Package 1 -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">Классикалық стильдегі фотосессия</div>
+                            <div class="ls-pkg-duration"><i class="fa-regular fa-clock"></i> Ұзақтығы: 1 сағат</div>
+                            <div class="ls-pkg-price" style="margin-top: 15px; border-top: none; padding-top: 0;">25 000 тг <span style="font-weight: 400; font-size: 0.9rem; color: #666; text-transform: lowercase;">(5 адамға дейін)</span></div>
+                            <div class="extra-person"><i class="fa-solid fa-plus"></i> Әр қосымша адамға: <b>+2 000 тг</b></div>
+                            
+                            <h5 class="inc-title" style="margin-top: 20px; font-size: 1rem; color: #333;">Пакетке кіреді:</h5>
+                            <ul class="ls-pkg-list" style="margin-top: 10px;">
+                                <li><i class="fa-solid fa-check"></i> Кәсіби фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотоөңдеу (цветокоррекция)</li>
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Образ өзіңізден</li>
+                            </ul>
+                        </div>
+
+                        <!-- Package 2 -->
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">Этно + классика (екі стиль бірге)</div>
+                            <div class="ls-pkg-duration"><i class="fa-regular fa-clock"></i> Ұзақтығы: 1 сағат</div>
+                            <div class="ls-pkg-price highlight" style="margin-top: 15px; border-top: none; padding-top: 0;">34 990 тг <span style="font-weight: 400; font-size: 0.9rem; color: #666; text-transform: lowercase;">(5 адамға дейін)</span></div>
+                            <div class="extra-person"><i class="fa-solid fa-plus"></i> Әр қосымша адамға: <b>+5 000 тг</b></div>
+                            
+                            <h5 class="inc-title" style="margin-top: 20px; font-size: 1rem; color: #333;">Пакетке кіреді:</h5>
+                            <ul class="ls-pkg-list" style="margin-top: 10px;">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> 1 локация классикалық зал</li>
+                                <li><i class="fa-solid fa-check"></i> 2 локация киіз үй</li>
+                                <li><i class="fa-solid fa-check"></i> Кәсіби фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> 50–70 өңделген фото (электронды форматта)</li>
+                                <li><i class="fa-solid fa-check"></i> Қазақы киім (этно образ)</li>
+                                <li><i class="fa-solid fa-check"></i> Сіздерден 1 жеке образ</li>
+                            </ul>
+                            
+                            <div class="ls-pkg-note" style="margin-top: auto; padding-top: 15px; border-top: 1px dashed rgba(0,0,0,0.1); font-size: 0.85rem; color: var(--accent-color);">
+                                <b>Ескерту:</b> Бұл пакет 5 адамға арналған
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Топпен фотосессия Modal -->
+        <div id="group-modal" class="ls-modal">
+            <div class="ls-modal-content">
+                <div class="ls-modal-header">
+                    <h2>Топпен фотосессия прайс лист</h2>
+                    <span class="group-close-modal ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    
+                    <div class="ls-packages" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 30px;">
+                        <!-- 5 адамға дейін -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header" style="font-size: 1.2rem;">5 адамға дейін</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Кіреуі</li>
+                            </ul>
+                            <div class="group-pricing-block">
+                                <div class="price-row"><span>1 сағат</span> <b>25 000 тг</b></div>
+                                <div class="price-row"><span>2 сағат</span> <b>40 000 тг</b></div>
+                            </div>
+                        </div>
+
+                        <!-- 10 адамға дейін -->
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header" style="font-size: 1.2rem;">10 адамға дейін</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Кіреуі</li>
+                            </ul>
+                            <div class="group-pricing-block">
+                                <div class="price-row"><span>1 сағат</span> <b class="highlight">35 000 тг</b></div>
+                                <div class="price-row"><span>2 сағат</span> <b class="highlight">60 000 тг</b></div>
+                            </div>
+                        </div>
+
+                        <!-- 20 адамға дейін -->
+                        <div class="ls-package">
+                            <div class="ls-pkg-header" style="font-size: 1.2rem;">20 адамға дейін</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-check"></i> Фотостудия</li>
+                                <li><i class="fa-solid fa-check"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка</li>
+                                <li><i class="fa-solid fa-check"></i> Кіреуі</li>
+                            </ul>
+                            <div class="group-pricing-block">
+                                <div class="price-row"><span>1 сағат</span> <b>40 000 тг</b></div>
+                                <div class="price-row"><span>2 сағат</span> <b>70 000 тг</b></div>
+                                <div class="price-row"><span>3 сағат</span> <b>100 000 тг</b></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info & Differences -->
+                    <div class="group-info-grid">
+                        <div class="ls-conditions" style="height: 100%;">
+                            <div class="ls-cond-left" style="flex: 1;">
+                                <h5 style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">Қосымша ақылы қызметтер:</h5>
+                                <ul style="list-style: none;">
+                                    <li style="margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
+                                        <span style="color: #555;"><i class="fa-solid fa-user-tie" style="color: var(--accent-color); margin-right: 8px;"></i>Мобилограф</span>
+                                        <b style="color: #333;">5 000 тг</b>
+                                    </li>
+                                    <li style="margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
+                                        <span style="color: #555;"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-color); margin-right: 8px;"></i>Макияж</span>
+                                        <b style="color: #333;">6 000 тг</b>
+                                    </li>
+                                    <li style="margin-bottom: 5px; display: flex; justify-content: space-between; padding-bottom: 5px;">
+                                        <span style="color: #555;"><i class="fa-solid fa-scissors" style="color: var(--accent-color); margin-right: 8px;"></i>Прическа</span>
+                                        <b style="color: #333;">6 000 тг</b>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="group-text-panel">
+                            <h5><i class="fa-regular fa-comment-dots"></i> Виньетка мен фотосессия айырмашылығы:</h5>
+                            <p>Виньеткага түскен кезде шамамен 50–70 кадр түсіріледі. Бұл кадрлар негізінен фотоальбомға және виньетка бетіне арналған. Сонымен қатар виньетка форматына байланысты топтық суреттер де жасалады.</p>
+                            <p>Ал фотосессияда кадр саны шектелмейді — бәрі уақытқа байланысты. Яғни бронь етілген уақыт ішінде мүмкіндігінше көп кадр түсіріледі.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Той (Wedding) Modal -->
+        <div id="wedding-modal" class="ls-modal">
+            <div class="ls-modal-content" style="max-width: 1200px;">
+                <div class="ls-modal-header">
+                    <h2>Той видеосъемка пакеттері</h2>
+                    <span class="wedding-close-modal ls-close-modal">&times;</span>
+                </div>
+                <div class="ls-modal-body">
+                    
+                    <!-- SECTION 1: СТАНДАРТ -->
+                    <h3 class="wedding-section-title"><i class="fa-solid fa-clapperboard"></i> SECTION 1 — СТАНДАРТ</h3>
+                    <div class="ls-packages wedding-packages" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 40px; gap: 20px;">
+                        
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">СТАНДАРТ ВИДЕО</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-video"></i> 1 камера</li>
+                                <li><i class="fa-solid fa-check"></i> Стабилизатор (Ronin)</li>
+                                <li><i class="fa-solid fa-check"></i> Мобилограф</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                            </ul>
+                            <div class="ls-pkg-price">💰 69 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">СТАНДАРТ ВИДЕО 2</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-video"></i> 1 камера (видеооператор)</li>
+                                <li><i class="fa-solid fa-check"></i> Стабилизатор (Ronin)</li>
+                                <li><i class="fa-solid fa-camera"></i> 1 фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Мобилограф</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                                <li><i class="fa-solid fa-image"></i> Фотогалерия (сайт)</li>
+                            </ul>
+                            <div class="ls-pkg-price highlight">💰 99 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: ПРЕМИУМ -->
+                    <h3 class="wedding-section-title"><i class="fa-solid fa-clapperboard"></i> SECTION 2 — ПРЕМИУМ</h3>
+                    <div class="ls-packages wedding-packages" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 40px; gap: 20px;">
+                        
+                        <div class="ls-package">
+                            <div class="ls-pkg-header">ПАКЕТ ПРЕМИУМ</div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-video"></i> 2х камера</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (штатив)</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (стабилизатор)</li>
+                                <li><i class="fa-solid fa-check"></i> 1 мобилограф</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                            </ul>
+                            <div class="ls-pkg-price">💰 129 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <div class="ls-package ls-pkg-standart">
+                            <div class="ls-pkg-header">ПАКЕТ ПРЕМИУМ 2<br><span style="font-size:0.8rem; font-weight:400; color:#666;">(только банкет)</span></div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-video"></i> 2х камера</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (штатив)</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (стабилизатор)</li>
+                                <li><i class="fa-regular fa-clock"></i> Real Time</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-camera"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Мобилограф</li>
+                                <li><i class="fa-solid fa-qrcode"></i> QR фото</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                            </ul>
+                            <div class="ls-pkg-price highlight">💰 149 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+
+                        <div class="ls-package ls-pkg-standart" style="border-color: #d4af37;">
+                            <div class="ls-pkg-header" style="color: #d4af37;">ПАКЕТ ПРЕМИУМ 3<br><span style="font-size:0.8rem; font-weight:400; color:#666;">(полный день)</span></div>
+                            <ul class="ls-pkg-list">
+                                <li><i class="fa-solid fa-video"></i> 2х камера</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (штатив)</li>
+                                <li><i class="fa-solid fa-check"></i> Видеооператор (стабилизатор)</li>
+                                <li><i class="fa-regular fa-clock"></i> Real Time</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-camera"></i> Фотограф</li>
+                                <li><i class="fa-solid fa-check"></i> Мобилограф</li>
+                                <li><i class="fa-solid fa-qrcode"></i> QR фото</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                            </ul>
+                            <div class="ls-pkg-price highlight" style="color: #d4af37;">💰 169 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: VIP -->
+                    <h3 class="wedding-section-title"><i class="fa-solid fa-clapperboard"></i> SECTION 3 — VIP</h3>
+                    <div class="ls-packages wedding-packages" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        
+                        <div class="ls-package ls-pkg-standart" style="background: linear-gradient(145deg, #fff, #fdfbf7); border: 2px solid #c5a059; box-shadow: 0 15px 40px rgba(197, 160, 89, 0.15);">
+                            <div class="ls-pkg-header" style="color: #c5a059; font-size: 1.5rem;">ПАКЕТ VIP</div>
+                            <ul class="ls-pkg-list" style="column-count: 2; column-gap: 20px;">
+                                <li><i class="fa-solid fa-video"></i> 3х камера</li>
+                                <li><i class="fa-solid fa-check"></i> 1 видеооператор (кран)</li>
+                                <li><i class="fa-solid fa-check"></i> 1 видеооператор (штатив)</li>
+                                <li><i class="fa-solid fa-check"></i> 1 видеооператор (стабилизатор)</li>
+                                <li><i class="fa-regular fa-clock"></i> Real Time</li>
+                                <li><i class="fa-solid fa-camera"></i> 1 фотограф</li>
+                                <li><i class="fa-solid fa-qrcode"></i> QR фото</li>
+                                <li><i class="fa-solid fa-check"></i> 1 мобилограф</li>
+                                <li><i class="fa-solid fa-check"></i> Чистый звук</li>
+                                <li><i class="fa-solid fa-check"></i> Флешка</li>
+                            </ul>
+                            <div class="ls-pkg-price" style="color: #c5a059;">💰 249 000 тг <span>(жеңілдікпен)</span></div>
+                        </div>
+                        
+                    </div>
+
                 </div>
             </div>
         </div>
