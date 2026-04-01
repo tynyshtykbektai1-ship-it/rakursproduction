@@ -422,82 +422,125 @@
             </div>
         </section>
 
-        <!-- Vignette Full Modal -->
-        <div id="vignette-modal" class="modal full-modal">
-            <div class="full-modal-wrapper">
-                <span class="close-modal close-vignette">&times;</span>
-                <div class="full-modal-header">
-                    <h2>Виньетка макеттері мен бағалары</h2>
+        <!-- Premium Vignette Modal -->
+        <div id="vignette-modal" class="vignette-premium-modal" aria-hidden="true">
+            <div class="vp-modal-shell" role="dialog" aria-modal="true" aria-labelledby="vp-modal-title">
+                <button class="vp-close" type="button" aria-label="Жабу">&times;</button>
+
+                <div class="vp-modal-header">
+                    <h2 id="vp-modal-title">Виньетка мысалдары</h2>
+                    <p>Дайын үлгілер: шынайы 3D альбом алдын ала көру.</p>
+                </div>
+
+                <div class="vp-sticky-nav" aria-label="Навигация по шаблонам">
+                    <button type="button" class="vp-nav-link is-active" data-scroll-target="vp-template-1">Бірінші</button>
+                    <button type="button" class="vp-nav-link" data-scroll-target="vp-template-2">Екінші</button>
+                    <button type="button" class="vp-nav-link" data-scroll-target="vp-template-3">Үшінші</button>
+                    <button type="button" class="vp-nav-link" data-scroll-target="vp-template-4">Төртінші</button>
+                </div>
+
+                <div class="vp-modal-body">
+                    <div class="vp-template-list">
+                        <section class="vp-template-section" id="vp-template-1" data-template-id="vp-template-1">
+                            <h3>Бірінші шаблон • 11–9 сынып</h3>
+                            <article class="vp-album-item">
+                                <div class="vp-album" data-state="0">
+                                    <div class="vp-book-scene">
+                                        <div class="vp-book-core">
+                                            <div class="vp-spine-shadow"></div>
+                                            <div class="vp-leaf vp-leaf-front" data-leaf="1">
+                                                <div class="vp-face vp-front"><img src="img/vin2.jpeg" alt="Front cover"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin3.jpeg" alt="Inside left"></div>
+                                            </div>
+                                            <div class="vp-leaf vp-leaf-back" data-leaf="2">
+                                                <div class="vp-face vp-front"><img src="img/vin4.jpeg" alt="Inside right"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin5.jpeg" alt="Back cover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vp-album-controls">
+                                        <button type="button" class="vp-control" data-action="prev">Артқа</button>
+                                        <button type="button" class="vp-control" data-action="next">Алға</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="vp-template-section" id="vp-template-2" data-template-id="vp-template-2">
+                            <h3>Екінші шаблон • Жас түлектер</h3>
+                            <article class="vp-album-item">
+                                <div class="vp-album" data-state="0">
+                                    <div class="vp-book-scene">
+                                        <div class="vp-book-core">
+                                            <div class="vp-spine-shadow"></div>
+                                            <div class="vp-leaf vp-leaf-front" data-leaf="1">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1523580846011-d3a5ce2522a1?q=80&w=900&h=1200&fit=crop" alt="Front cover"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&h=1200&fit=crop" alt="Inside left"></div>
+                                            </div>
+                                            <div class="vp-leaf vp-leaf-back" data-leaf="2">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=900&h=1200&fit=crop" alt="Inside right"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=900&h=1200&fit=crop" alt="Back cover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vp-album-controls">
+                                        <button type="button" class="vp-control" data-action="prev">Артқа</button>
+                                        <button type="button" class="vp-control" data-action="next">Алға</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="vp-template-section" id="vp-template-3" data-template-id="vp-template-3">
+                            <h3>Үшінші шаблон • Бастауышпен қоштасу</h3>
+                            <article class="vp-album-item">
+                                <div class="vp-album" data-state="0">
+                                    <div class="vp-book-scene">
+                                        <div class="vp-book-core">
+                                            <div class="vp-spine-shadow"></div>
+                                            <div class="vp-leaf vp-leaf-front" data-leaf="1">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?q=80&w=900&h=1200&fit=crop" alt="Front cover"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=900&h=1200&fit=crop" alt="Inside left"></div>
+                                            </div>
+                                            <div class="vp-leaf vp-leaf-back" data-leaf="2">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=80&w=900&h=1200&fit=crop" alt="Inside right"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=900&h=1200&fit=crop" alt="Back cover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vp-album-controls">
+                                        <button type="button" class="vp-control" data-action="prev">Артқа</button>
+                                        <button type="button" class="vp-control" data-action="next">Алға</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="vp-template-section" id="vp-template-4" data-template-id="vp-template-4">
+                            <h3>Төртінші шаблон • Бала-бақшамен қоштасу</h3>
+                            <article class="vp-album-item">
+                                <div class="vp-album" data-state="0">
+                                    <div class="vp-book-scene">
+                                        <div class="vp-book-core">
+                                            <div class="vp-spine-shadow"></div>
+                                            <div class="vp-leaf vp-leaf-front" data-leaf="1">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=900&h=1200&fit=crop" alt="Front cover"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=900&h=1200&fit=crop" alt="Inside left"></div>
+                                            </div>
+                                            <div class="vp-leaf vp-leaf-back" data-leaf="2">
+                                                <div class="vp-face vp-front"><img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=80&w=900&h=1200&fit=crop" alt="Inside right"></div>
+                                                <div class="vp-face vp-back"><img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=900&h=1200&fit=crop" alt="Back cover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vp-album-controls">
+                                        <button type="button" class="vp-control" data-action="prev">Артқа</button>
+                                        <button type="button" class="vp-control" data-action="next">Алға</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
                     </div>
-                <nav class="vignette-sticky-nav">
-                        <ul>
-                            <li><a href="#v-11-9">11-9 сынып</a></li>
-                            <li><a href="#v-jas">Жас түлектерге</a></li>
-                            <li><a href="#v-bastauysh">Бастауышпен қоштасу</a></li>
-                            <li><a href="#v-sadik">Бала-бақшамен қоштасу</a></li>
-                            <li><a href="#v-price">Прайс-лист</a></li>
-                        </ul>
-                    </nav>
-                <!-- Scrollable Content -->
-                <div class="full-modal-body">
-                    <!-- 11-9 сынып -->
-                    <section id="v-11-9" class="v-modal-section">
-                        <h3>11-9 сынып виньеткалары</h3>
-                        <p>Оқушыларға арналған стильді және заманауи макеттер.</p>
-                        <div class="v-gallery">
-                            <img src="https://images.unsplash.com/photo-1523580846011-d3a5ce2522a1?q=80&w=800" alt="11-9 сынып пример 1">
-                            <img src="https://images.unsplash.com/photo-1541703649580-994c6f50cddb?q=80&w=800" alt="11-9 сынып пример 2">
-                        </div>
-                    </section>
-                    
-                    <!-- Жас түлектерге -->
-                    <section id="v-jas" class="v-modal-section bg-light">
-                        <h3>Жас түлектерге</h3>
-                        <p>Студенттер мен колледж бітірушілеріне арналған эксклюзивті дизайн.</p>
-                        <div class="v-gallery">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800" alt="Жас түлектерге 1">
-                            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800" alt="Жас түлектерге 2">
-                        </div>
-                    </section>
-
-                    <!-- Бастауышпен қоштасу -->
-                    <section id="v-bastauysh" class="v-modal-section">
-                        <h3>Бастауышпен қоштасу</h3>
-                        <p>Кіші сыныпты бітірушілердің алғашқы маңызды сәттері.</p>
-                        <div class="v-gallery">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800" alt="Бастауышпен қоштасу 1">
-                            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800" alt="Бастауышпен қоштасу 2">
-                        </div>
-                    </section>
-
-                    <!-- Бала-бақшамен қоштасу -->
-                    <section id="v-sadik" class="v-modal-section bg-light">
-                        <h3>Бала-бақшамен қоштасу</h3>
-                        <p>Кішкентай бүлдіршіндерге арналған ең жарқын және қызықты дизайн.</p>
-                        <div class="v-gallery">
-                            <img src="https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=800" alt="Бала-бақша 1">
-                            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=800" alt="Бала-бақша 2">
-                        </div>
-                    </section>
-
-                    <!-- Прайс-лист -->
-                    <section id="v-price" class="v-modal-section">
-                        <h3>Прайс-лист</h3>
-                        <div class="v-price-table">
-                            <div class="price-item">
-                                <h4>Стандарт (1 бет / 2 бет)</h4>
-                                <p>5000 ₸ - 8000 ₸</p>
-                            </div>
-                            <div class="price-item highlight">
-                                <h4>Премиум альбом (Трюмо / Кітап)</h4>
-                                <p>12000 ₸ - 20000 ₸</p>
-                            </div>
-                            <div class="price-item">
-                                <h4>Индивидуалды фотосессия студияда</h4>
-                                <p>Келісім бойынша</p>
-                            </div>
-                        </div>
-                    </section>
                 </div>
             </div>
         </div>

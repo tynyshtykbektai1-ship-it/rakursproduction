@@ -54,98 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         appearOnScroll.observe(fader);
     });
 
-    // --- 3D Vignettes Book ---
-    const pages = document.querySelectorAll('.page');
-    let currentPage = 1;
-    const maxPages = pages.length;
-    
-    // Set z-index for pages initially
-    for(let i = 0; i < pages.length; i++) {
-        pages[i].style.zIndex = pages.length - i;
-    }
-
-    
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-
-    const updateBookState = () => {
-        if (!pages.length) return;
-        pages.forEach((page, index) => {
-            const pageNum = index + 1;
-            if (pageNum < currentPage) {
-                page.classList.add('turned');
-                page.style.zIndex = pageNum;
-            } else {
-                page.classList.remove('turned');
-                page.style.zIndex = maxPages - index;
-            }
-        });
-
-        // Disable/enable buttons based on state
-        if (prevBtn && nextBtn) {
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage > maxPages;
-            prevBtn.style.opacity = prevBtn.disabled ? 0.3 : 1;
-            nextBtn.style.opacity = nextBtn.disabled ? 0.3 : 1;
-            prevBtn.style.cursor = prevBtn.disabled ? 'default' : 'pointer';
-            nextBtn.style.cursor = nextBtn.disabled ? 'default' : 'pointer';
-        }
-    };
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            if (currentPage <= maxPages) {
-                currentPage++;
-                updateBookState();
-            }
-        });
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (currentPage > 1) {
-                currentPage--;
-                updateBookState();
-            }
-        });
-    }
-
-    // Make pages clickable
-    pages.forEach((page, i) => {
-        page.addEventListener('click', () => {
-            const pageNum = i + 1;
-            if (page.classList.contains('turned')) {
-                currentPage = pageNum;
-            } else {
-                currentPage = pageNum + 1;
-            }
-            updateBookState();
-        });
-    });
-
-    updateBookState();
-
-    // Book category tabs mock integration
-    const bookBtns = document.querySelectorAll('.book-btn');
-    const bookTitleDisplay = document.getElementById('book-title-display');
-    
-    bookBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            bookBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            
-            // update cover title
-            if(bookTitleDisplay) {
-                bookTitleDisplay.textContent = e.target.textContent;
-            }
-            
-            // reset book
-            currentPage = 1;
-            updateBookState();
-        });
-    });
-
-
     // --- Locations Gallery Modal & Slider ---
     const modal = document.getElementById('location-modal');
     const closeModalBtn = modal ? modal.querySelector('.close-modal') : null;
@@ -444,47 +352,267 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Vignette Full Modal Logic ---
+    // --- Premium Vignette Modal Logic ---
     const vignetteCard = document.getElementById('vignette-card');
     const vignetteModal = document.getElementById('vignette-modal');
-    const closeVignetteBtn = document.querySelector('.close-vignette');
+    const closeVignetteBtn = document.querySelector('.vp-close');
 
-    if (vignetteCard && vignetteModal) {
-        vignetteCard.addEventListener('click', () => {
-            vignetteModal.classList.add('visible');
-            document.body.classList.add('no-scroll');
+    const setAlbumState = (album, nextState, duration = 900) => {
+        const bounded = Math.max(0, Math.min(2, nextState));
+        if (Number(album.dataset.state) === bounded) {
+            return;
+        }
+
+        album.classList.add('vp-animating');
+        album.dataset.state = String(bounded);
+        window.setTimeout(() => {
+            album.classList.remove('vp-animating');
+        }, duration);
+    };
+
+    const initPremiumAlbum = (album) => {
+        const leafFront = album.querySelector('.vp-leaf-front');
+        const leafBack = album.querySelector('.vp-leaf-back');
+        const controls = album.querySelectorAll('.vp-control');
+
+        if (!leafFront || !leafBack) {
+            return;
+        }
+
+        let dragging = false;
+        let moved = false;
+        let startX = 0;
+        let activeLeaf = null;
+        let dragMode = '';
+
+        const getState = () => Number(album.dataset.state || '0');
+
+        controls.forEach((control) => {
+            control.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (album.classList.contains('vp-animating')) {
+                    return;
+                }
+                const state = getState();
+                if (control.dataset.action === 'next' && state < 2) {
+                    setAlbumState(album, state + 1);
+                }
+                if (control.dataset.action === 'prev' && state > 0) {
+                    setAlbumState(album, state - 1);
+                }
+            });
         });
 
-        closeVignetteBtn.addEventListener('click', () => {
-            vignetteModal.classList.remove('visible');
-            document.body.classList.remove('no-scroll');
-        });
+        album.addEventListener('click', (event) => {
+            if (moved || album.classList.contains('vp-animating')) {
+                moved = false;
+                return;
+            }
+            const bounds = album.getBoundingClientRect();
+            const clickX = event.clientX - bounds.left;
+            const isRightSide = clickX > bounds.width / 2;
+            const state = getState();
 
-        vignetteModal.addEventListener('click', (e) => {
-            if(e.target === vignetteModal) {
-                vignetteModal.classList.remove('visible');
-                document.body.classList.remove('no-scroll');
+            if (state === 0) {
+                setAlbumState(album, 1);
+                return;
+            }
+            if (state === 1) {
+                setAlbumState(album, isRightSide ? 2 : 0);
+                return;
+            }
+            if (state === 2) {
+                setAlbumState(album, 1);
             }
         });
 
-        // Smooth scroll for internal links in vignette modal
-        const vignetteNavLinks = document.querySelectorAll('.vignette-sticky-nav a');
-        vignetteNavLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    // Calculate position accounting for the sticky nav height (~80px)
-                    const navHeight = document.querySelector('.vignette-sticky-nav').offsetHeight;
-                      const container = document.querySelector('.full-modal-body');
-                    // Scroll container instead of window since modal has overflow-y
-                    container.scrollTo({
-                        top: targetSection.offsetTop - navHeight - 20,
-                        behavior: 'smooth'
-                    });
+        album.addEventListener('pointerdown', (event) => {
+            if (album.classList.contains('vp-animating')) {
+                return;
+            }
+
+            const state = getState();
+            dragging = true;
+            moved = false;
+            startX = event.clientX;
+            activeLeaf = null;
+            dragMode = '';
+
+            if (state === 0) {
+                activeLeaf = leafFront;
+                dragMode = 'front-forward';
+            } else if (state === 1) {
+                const bounds = album.getBoundingClientRect();
+                if (event.clientX - bounds.left > bounds.width / 2) {
+                    activeLeaf = leafBack;
+                    dragMode = 'back-forward';
+                } else {
+                    activeLeaf = leafFront;
+                    dragMode = 'front-back';
                 }
+            } else if (state === 2) {
+                activeLeaf = leafBack;
+                dragMode = 'back-back';
+            }
+
+            if (activeLeaf) {
+                activeLeaf.classList.add('vp-is-dragging');
+            }
+
+            if (event.pointerId !== undefined) {
+                album.setPointerCapture(event.pointerId);
+            }
+        });
+
+        album.addEventListener('pointermove', (event) => {
+            if (!dragging || !activeLeaf) {
+                return;
+            }
+
+            const dx = event.clientX - startX;
+            if (Math.abs(dx) > 8) {
+                moved = true;
+            }
+
+            let progress = 0;
+            if (dragMode === 'front-forward' && dx < 0) {
+                progress = Math.min(1, Math.abs(dx) / 170);
+                activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
+            } else if (dragMode === 'back-forward' && dx < 0) {
+                progress = Math.min(1, Math.abs(dx) / 170);
+                activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
+            } else if (dragMode === 'front-back' && dx > 0) {
+                progress = Math.min(1, dx / 170);
+                activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
+            } else if (dragMode === 'back-back' && dx > 0) {
+                progress = Math.min(1, dx / 170);
+                activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
+            }
+        });
+
+        const finishDrag = (event) => {
+            if (!dragging) {
+                return;
+            }
+
+            const dx = event.clientX - startX;
+            const threshold = 70;
+            const state = getState();
+
+            if (activeLeaf) {
+                activeLeaf.classList.remove('vp-is-dragging');
+                activeLeaf.style.transform = '';
+            }
+
+            if (dragMode === 'front-forward') {
+                setAlbumState(album, dx < -threshold ? 1 : 0);
+            }
+            if (dragMode === 'back-forward') {
+                setAlbumState(album, dx < -threshold ? 2 : 1);
+            }
+            if (dragMode === 'front-back') {
+                setAlbumState(album, dx > threshold ? 0 : 1);
+            }
+            if (dragMode === 'back-back') {
+                setAlbumState(album, dx > threshold ? 1 : 2);
+            }
+
+            if (Math.abs(dx) < 8) {
+                setAlbumState(album, state, 0);
+            }
+
+            dragging = false;
+            activeLeaf = null;
+            dragMode = '';
+            if (event.pointerId !== undefined) {
+                album.releasePointerCapture(event.pointerId);
+            }
+        };
+
+        album.addEventListener('pointerup', finishDrag);
+        album.addEventListener('pointercancel', finishDrag);
+        album.addEventListener('pointerleave', (event) => {
+            if (dragging) {
+                finishDrag(event);
+            }
+        });
+    };
+
+    if (vignetteCard && vignetteModal) {
+        const navLinks = vignetteModal.querySelectorAll('.vp-nav-link');
+        const bodyScroll = vignetteModal.querySelector('.vp-modal-body');
+        const sections = vignetteModal.querySelectorAll('.vp-template-section');
+
+        const setActiveNav = (targetId) => {
+            navLinks.forEach((link) => {
+                const isActive = link.dataset.scrollTarget === targetId;
+                link.classList.toggle('is-active', isActive);
             });
+        };
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                const targetId = link.dataset.scrollTarget;
+                const target = vignetteModal.querySelector(`#${targetId}`);
+                if (!target || !bodyScroll) {
+                    return;
+                }
+                setActiveNav(targetId);
+                const topOffset = target.offsetTop - 12;
+                bodyScroll.scrollTo({ top: topOffset, behavior: 'smooth' });
+            });
+        });
+
+        if (bodyScroll && sections.length) {
+            const syncActiveLink = () => {
+                const pivot = bodyScroll.scrollTop + 140;
+                let activeId = sections[0].id;
+                sections.forEach((section) => {
+                    if (section.offsetTop <= pivot) {
+                        activeId = section.id;
+                    }
+                });
+                setActiveNav(activeId);
+            };
+
+            bodyScroll.addEventListener('scroll', syncActiveLink);
+            syncActiveLink();
+        }
+
+        vignetteModal.querySelectorAll('.vp-album').forEach((album) => {
+            initPremiumAlbum(album);
+        });
+
+        const closeVignetteModal = () => {
+            vignetteModal.classList.remove('visible');
+            vignetteModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('no-scroll');
+        };
+
+        vignetteCard.addEventListener('click', () => {
+            vignetteModal.classList.add('visible');
+            vignetteModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('no-scroll');
+            if (bodyScroll) {
+                bodyScroll.scrollTo({ top: 0, behavior: 'auto' });
+            }
+            setActiveNav('vp-template-1');
+        });
+
+        if (closeVignetteBtn) {
+            closeVignetteBtn.addEventListener('click', closeVignetteModal);
+        }
+
+        vignetteModal.addEventListener('click', (event) => {
+            if (event.target === vignetteModal) {
+                closeVignetteModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && vignetteModal.classList.contains('visible')) {
+                closeVignetteModal();
+            }
         });
     }
 
