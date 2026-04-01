@@ -560,6 +560,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const navLinks = vignetteModal.querySelectorAll('.vp-nav-link');
         const bodyScroll = vignetteModal.querySelector('.vp-modal-body');
         const sections = vignetteModal.querySelectorAll('.vp-template-section');
+        const pricingCards = vignetteModal.querySelectorAll('.vp-price-card.vp-reveal');
+        let pricingObserver = null;
+
+        const revealPricingCards = () => {
+            if (!pricingCards.length) {
+                return;
+            }
+            pricingCards.forEach((card, index) => {
+                window.setTimeout(() => {
+                    card.classList.add('is-visible');
+                }, index * 70);
+            });
+        };
+
+        if ('IntersectionObserver' in window && pricingCards.length) {
+            pricingObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        pricingObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: bodyScroll || null,
+                threshold: 0.2
+            });
+
+            pricingCards.forEach((card) => pricingObserver.observe(card));
+        }
 
         const setActiveNav = (targetId) => {
             navLinks.forEach((link) => {
@@ -615,6 +644,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 bodyScroll.scrollTo({ top: 0, behavior: 'auto' });
             }
             setActiveNav('vp-template-1');
+            if (!pricingObserver) {
+                revealPricingCards();
+            }
         });
 
         if (closeVignetteBtn) {
