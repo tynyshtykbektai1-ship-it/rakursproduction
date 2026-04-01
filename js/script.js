@@ -357,27 +357,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const vignetteModal = document.getElementById('vignette-modal');
     const closeVignetteBtn = document.querySelector('.vp-close');
 
+    const getAlbumLeaves = (album) => {
+        return Array.from(album.querySelectorAll('.vp-leaf'))
+            .sort((a, b) => Number(a.dataset.leaf || '0') - Number(b.dataset.leaf || '0'));
+    };
+
+    const applyAlbumVisualState = (album, state) => {
+        const leaves = getAlbumLeaves(album);
+        const maxState = leaves.length;
+        const bounded = Math.max(0, Math.min(maxState, state));
+
+        album.dataset.state = String(bounded);
+        album.dataset.maxState = String(maxState);
+
+        leaves.forEach((leaf, index) => {
+            const leafNumber = index + 1;
+            const isFlipped = leafNumber <= bounded;
+
+            leaf.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+            leaf.style.zIndex = isFlipped
+                ? String(leafNumber)
+                : String(maxState + (maxState - leafNumber + 1));
+        });
+    };
+
     const setAlbumState = (album, nextState, duration = 900) => {
-        const bounded = Math.max(0, Math.min(2, nextState));
-        if (Number(album.dataset.state) === bounded) {
+        const maxState = Number(album.dataset.maxState || getAlbumLeaves(album).length || 0);
+        const bounded = Math.max(0, Math.min(maxState, nextState));
+
+        if (Number(album.dataset.state || '0') === bounded) {
+            applyAlbumVisualState(album, bounded);
             return;
         }
 
         album.classList.add('vp-animating');
-        album.dataset.state = String(bounded);
+        applyAlbumVisualState(album, bounded);
+
+        if (duration === 0) {
+            album.classList.remove('vp-animating');
+            return;
+        }
+
         window.setTimeout(() => {
             album.classList.remove('vp-animating');
         }, duration);
     };
 
     const initPremiumAlbum = (album) => {
-        const leafFront = album.querySelector('.vp-leaf-front');
-        const leafBack = album.querySelector('.vp-leaf-back');
+        const leaves = getAlbumLeaves(album);
         const controls = album.querySelectorAll('.vp-control');
 
-        if (!leafFront || !leafBack) {
+        if (leaves.length < 2) {
             return;
         }
+
+        applyAlbumVisualState(album, Number(album.dataset.state || '0'));
 
         let dragging = false;
         let moved = false;
@@ -394,7 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
                 const state = getState();
-                if (control.dataset.action === 'next' && state < 2) {
+                const maxState = Number(album.dataset.maxState || leaves.length);
+                if (control.dataset.action === 'next' && state < maxState) {
                     setAlbumState(album, state + 1);
                 }
                 if (control.dataset.action === 'prev' && state > 0) {
@@ -412,17 +447,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const clickX = event.clientX - bounds.left;
             const isRightSide = clickX > bounds.width / 2;
             const state = getState();
+            const maxState = Number(album.dataset.maxState || leaves.length);
 
-            if (state === 0) {
-                setAlbumState(album, 1);
+            if (isRightSide && state < maxState) {
+                setAlbumState(album, state + 1);
                 return;
             }
-            if (state === 1) {
-                setAlbumState(album, isRightSide ? 2 : 0);
-                return;
-            }
-            if (state === 2) {
-                setAlbumState(album, 1);
+            if (!isRightSide && state > 0) {
+                setAlbumState(album, state - 1);
             }
         });
 
@@ -438,25 +470,23 @@ document.addEventListener('DOMContentLoaded', () => {
             activeLeaf = null;
             dragMode = '';
 
-            if (state === 0) {
-                activeLeaf = leafFront;
-                dragMode = 'front-forward';
-            } else if (state === 1) {
-                const bounds = album.getBoundingClientRect();
-                if (event.clientX - bounds.left > bounds.width / 2) {
-                    activeLeaf = leafBack;
-                    dragMode = 'back-forward';
-                } else {
-                    activeLeaf = leafFront;
-                    dragMode = 'front-back';
-                }
-            } else if (state === 2) {
-                activeLeaf = leafBack;
-                dragMode = 'back-back';
+            const maxState = Number(album.dataset.maxState || leaves.length);
+            const bounds = album.getBoundingClientRect();
+            const isRightSide = event.clientX - bounds.left > bounds.width / 2;
+
+            if (isRightSide && state < maxState) {
+                activeLeaf = leaves[state];
+                dragMode = 'forward';
+            } else if (!isRightSide && state > 0) {
+                activeLeaf = leaves[state - 1];
+                dragMode = 'backward';
             }
 
             if (activeLeaf) {
                 activeLeaf.classList.add('vp-is-dragging');
+            } else {
+                dragging = false;
+                return;
             }
 
             if (event.pointerId !== undefined) {
@@ -475,16 +505,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             let progress = 0;
-            if (dragMode === 'front-forward' && dx < 0) {
+            if (dragMode === 'forward' && dx < 0) {
                 progress = Math.min(1, Math.abs(dx) / 170);
                 activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
-            } else if (dragMode === 'back-forward' && dx < 0) {
-                progress = Math.min(1, Math.abs(dx) / 170);
-                activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
-            } else if (dragMode === 'front-back' && dx > 0) {
-                progress = Math.min(1, dx / 170);
-                activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
-            } else if (dragMode === 'back-back' && dx > 0) {
+            } else if (dragMode === 'backward' && dx > 0) {
                 progress = Math.min(1, dx / 170);
                 activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
             }
@@ -504,17 +528,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeLeaf.style.transform = '';
             }
 
-            if (dragMode === 'front-forward') {
-                setAlbumState(album, dx < -threshold ? 1 : 0);
+            if (dragMode === 'forward') {
+                setAlbumState(album, dx < -threshold ? state + 1 : state);
             }
-            if (dragMode === 'back-forward') {
-                setAlbumState(album, dx < -threshold ? 2 : 1);
-            }
-            if (dragMode === 'front-back') {
-                setAlbumState(album, dx > threshold ? 0 : 1);
-            }
-            if (dragMode === 'back-back') {
-                setAlbumState(album, dx > threshold ? 1 : 2);
+            if (dragMode === 'backward') {
+                setAlbumState(album, dx > threshold ? state - 1 : state);
             }
 
             if (Math.abs(dx) < 8) {

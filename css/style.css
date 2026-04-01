@@ -784,19 +784,7 @@ body {
     border-radius: 13px 0 0 13px;
 }
 
-.vp-leaf-front .vp-front::before {
-    content: "RAKURS PRODUCTION";
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 16px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.92);
-    letter-spacing: 0.15em;
-    font-size: 0.7rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-    z-index: 2;
-}
+
 
 .vp-album-controls {
     display: flex;
@@ -822,14 +810,9 @@ body {
     border-color: #b08968;
 }
 
-.vp-album[data-state="0"] .vp-leaf-front { transform: rotateY(0deg); z-index: 3; }
-.vp-album[data-state="0"] .vp-leaf-back { transform: rotateY(0deg); z-index: 2; }
-
-.vp-album[data-state="1"] .vp-leaf-front { transform: rotateY(-180deg); z-index: 4; }
-.vp-album[data-state="1"] .vp-leaf-back { transform: rotateY(0deg); z-index: 3; }
-
-.vp-album[data-state="2"] .vp-leaf-front { transform: rotateY(-180deg); z-index: 2; }
-.vp-album[data-state="2"] .vp-leaf-back { transform: rotateY(-180deg); z-index: 4; }
+.vp-leaf {
+    z-index: 2;
+}
 
 .vp-album.vp-animating {
     pointer-events: none;
@@ -862,25 +845,89 @@ body {
     }
 
     .vp-modal-header {
-        padding: 20px 48px 8px;
+        padding: 18px 52px 8px 14px;
     }
 
     .vp-modal-header h2 {
         font-size: 1.5rem;
     }
 
-    .vp-modal-body { padding: 8px 14px 18px; }
+    .vp-modal-body { padding: 6px 8px 16px; }
+
+    .vp-template-list {
+        gap: 14px;
+    }
+
+    .vp-template-section {
+        padding: 10px;
+    }
 
     .vp-book-core {
-        width: min(560px, 100%);
+        width: min(860px, calc(100vw - 20px));
     }
 
     .vp-album-item {
-        padding: 14px;
+        padding: 8px;
     }
 
     .vp-book-core {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    .vp-album-controls {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 520px) {
+    .vp-close {
+        width: 40px;
+        height: 40px;
+    }
+
+    .vp-modal-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .vp-modal-header p {
+        font-size: 0.86rem;
+    }
+
+    .vp-sticky-nav {
+        top: 0;
+        padding: 8px 8px 10px;
+        gap: 6px;
+    }
+
+    .vp-nav-link {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+
+    .vp-template-section {
+        border-radius: 14px;
+        padding: 8px;
+        scroll-margin-top: 82px;
+    }
+
+    .vp-template-section h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .vp-album-item {
+        border-radius: 14px;
+        padding: 6px;
+    }
+
+    .vp-book-core {
+        width: calc(100vw - 12px);
+        min-height: 220px;
+    }
+
+    .vp-album-item h4 {
+        margin-top: 10px;
+        font-size: 0.92rem;
     }
 }
 
