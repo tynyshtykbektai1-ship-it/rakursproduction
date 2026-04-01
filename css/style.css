@@ -647,20 +647,20 @@ body {
 
 .vp-template-list {
     display: grid;
-    gap: 24px;
+    gap: 34px;
 }
 
 .vp-template-section {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(247, 241, 232, 0.8) 100%);
     border: 1px solid rgba(124, 99, 73, 0.11);
     border-radius: 18px;
-    padding: 20px;
+    padding: 28px;
     scroll-margin-top: 92px;
 }
 
 .vp-template-section h3 {
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 24px;
     color: #3f332b;
     letter-spacing: 0.02em;
 }
@@ -669,12 +669,12 @@ body {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.66) 0%, rgba(246, 240, 232, 0.88) 100%);
     border: 1px solid rgba(124, 99, 73, 0.13);
     border-radius: 18px;
-    padding: 22px;
+    padding: 28px 26px;
 }
 
 .vp-album-item h4 {
     text-align: center;
-    margin-top: 14px;
+    margin: 22px 0 10px;
     color: #3b2f28;
     letter-spacing: 0.02em;
 }
@@ -855,11 +855,11 @@ body {
     .vp-modal-body { padding: 6px 8px 16px; }
 
     .vp-template-list {
-        gap: 14px;
+        gap: 20px;
     }
 
     .vp-template-section {
-        padding: 10px;
+        padding: 14px;
     }
 
     .vp-book-core {
@@ -867,7 +867,7 @@ body {
     }
 
     .vp-album-item {
-        padding: 8px;
+        padding: 14px 12px;
     }
 
     .vp-book-core {
@@ -906,18 +906,18 @@ body {
 
     .vp-template-section {
         border-radius: 14px;
-        padding: 8px;
+        padding: 12px;
         scroll-margin-top: 82px;
     }
 
     .vp-template-section h3 {
         font-size: 1rem;
-        margin-bottom: 10px;
+        margin-bottom: 14px;
     }
 
     .vp-album-item {
         border-radius: 14px;
-        padding: 6px;
+        padding: 10px;
     }
 
     .vp-book-core {
@@ -926,7 +926,7 @@ body {
     }
 
     .vp-album-item h4 {
-        margin-top: 10px;
+        margin: 14px 0 8px;
         font-size: 0.92rem;
     }
 }
