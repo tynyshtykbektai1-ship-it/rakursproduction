@@ -596,8 +596,8 @@ body {
 
 .vp-close {
     position: absolute;
-    right: 38px;
-    top: 28px;
+    right: 18px;
+    top: 12px;
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -608,35 +608,55 @@ body {
     cursor: pointer;
     color: #2d2a27;
     transition: transform 0.25s ease, background-color 0.25s ease;
-    z-index: 3;
+    z-index: 8;
+}
+
+.vp-top-title {
+    text-align: center;
+    padding: 14px 64px 8px;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #2d221b;
 }
 
 .vp-instagram-fab {
-    position: absolute;
-    left: 38px;
-    top: 28px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.92);
-    color: #6a4e3a;
-    display: grid;
-    place-items: center;
-    box-shadow: 0 10px 24px rgba(26, 20, 16, 0.16);
-    transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
-    z-index: 3;
+    position: fixed;
+    left: 22px;
+    bottom: 20px;
+    min-width: 146px;
+    height: 50px;
+    border-radius: 999px;
+    border: 1px solid rgba(176, 137, 104, 0.42);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 240, 233, 0.98) 100%);
+    color: #5f4635;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 16px;
+    box-shadow: 0 16px 34px rgba(26, 20, 16, 0.2);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease, background-color 0.22s ease;
+    z-index: 1401;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
 .vp-instagram-fab svg {
     width: 22px;
     height: 22px;
     fill: currentColor;
+    flex-shrink: 0;
+}
+
+.vp-instagram-fab span {
+    line-height: 1;
 }
 
 .vp-instagram-fab:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(26, 20, 16, 0.22);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 18px 36px rgba(26, 20, 16, 0.28);
     color: #b08968;
 }
 
@@ -667,12 +687,46 @@ body {
     top: 0;
     z-index: 5;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 56px 8px 14px;
+    background: linear-gradient(180deg, rgba(252, 251, 248, 0.98) 0%, rgba(252, 251, 248, 0.9) 70%, rgba(252, 251, 248, 0) 100%);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(124, 99, 73, 0.12);
+}
+
+.vp-nav-toggle {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(176, 137, 104, 0.45);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    color: #3e332b;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.vp-nav-toggle-bars {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.vp-nav-toggle-bars span {
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 99px;
+}
+
+.vp-nav-menu {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px 16px 12px;
-    background: linear-gradient(180deg, rgba(252, 251, 248, 0.98) 0%, rgba(252, 251, 248, 0.9) 70%, rgba(252, 251, 248, 0) 100%);
-    backdrop-filter: blur(3px);
+    gap: 8px;
 }
 
 .vp-nav-link {
@@ -680,10 +734,11 @@ body {
     background: rgba(255, 255, 255, 0.65);
     border-radius: 999px;
     color: #3e332b;
-    padding: 10px 18px;
-    font-size: 0.93rem;
+    padding: 8px 14px;
+    font-size: 0.86rem;
     cursor: pointer;
     transition: all 0.25s ease;
+    white-space: nowrap;
 }
 
 .vp-nav-link:hover,
@@ -695,7 +750,7 @@ body {
 }
 
 .vp-modal-body {
-    padding: 12px 48px 36px;
+    padding: 8px 48px 36px;
     overflow: auto;
 }
 
@@ -929,7 +984,7 @@ body {
     height: 100%;
     transform-origin: left center;
     transform-style: preserve-3d;
-    transition: transform 1.02s cubic-bezier(0.2, 0.82, 0.24, 1), filter 1.02s ease;
+    transition: transform 1.55s cubic-bezier(0.16, 0.82, 0.2, 1), filter 1.55s ease;
     will-change: transform;
     --vp-curve: 0deg;
     transform: translateZ(0);
@@ -941,7 +996,7 @@ body {
     inset: 0;
     background: linear-gradient(to left, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0));
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.45s ease;
     pointer-events: none;
 }
 
@@ -1047,22 +1102,56 @@ body {
         right: 14px;
     }
 
+    .vp-top-title {
+        padding: 12px 56px 8px;
+        font-size: 0.98rem;
+    }
+
     .vp-instagram-fab {
-        top: 14px;
-        left: 14px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .vp-modal-header {
-        padding: 20px 56px 12px 18px;
-    }
-
-    .vp-modal-header h2 {
-        font-size: 1.5rem;
+        left: 12px;
+        bottom: 14px;
+        min-width: 132px;
+        height: 46px;
+        padding: 0 14px;
+        font-size: 0.88rem;
     }
 
     .vp-modal-body { padding: 10px 12px 24px; }
+
+    .vp-sticky-nav {
+        justify-content: space-between;
+        padding: 10px 12px;
+    }
+
+    .vp-nav-toggle {
+        display: inline-flex;
+    }
+
+    .vp-nav-menu {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: calc(100% + 8px);
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        border: 1px solid rgba(124, 99, 73, 0.16);
+        border-radius: 14px;
+        background: rgba(252, 251, 248, 0.98);
+        box-shadow: 0 12px 30px rgba(30, 23, 17, 0.16);
+    }
+
+    .vp-sticky-nav.is-open .vp-nav-menu {
+        display: flex;
+    }
+
+    .vp-nav-link {
+        width: 100%;
+        text-align: left;
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
 
     .vp-pricing {
         padding: 20px 16px;
@@ -1114,16 +1203,18 @@ body {
     }
 
     .vp-instagram-fab {
-        width: 38px;
-        height: 38px;
+        left: 10px;
+        bottom: 12px;
+        min-width: 44px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+        gap: 0;
     }
 
-    .vp-modal-header h2 {
-        font-size: 1.35rem;
-    }
-
-    .vp-modal-header p {
-        font-size: 0.86rem;
+    .vp-instagram-fab span {
+        display: none;
     }
 
     .vp-modal-body {
@@ -1132,13 +1223,7 @@ body {
 
     .vp-sticky-nav {
         top: 0;
-        padding: 10px 10px 12px;
-        gap: 6px;
-    }
-
-    .vp-nav-link {
-        padding: 8px 12px;
-        font-size: 0.82rem;
+        padding: 8px 10px;
     }
 
     .vp-template-section {

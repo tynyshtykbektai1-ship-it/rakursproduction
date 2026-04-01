@@ -377,6 +377,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .sort((a, b) => Number(a.dataset.leaf || '0') - Number(b.dataset.leaf || '0'));
     };
 
+    const VP_FLIP_DURATION = 1650;
+    const VP_DRAG_PROGRESS_DISTANCE = 300;
+
     const applyAlbumVisualState = (album, state) => {
         const leaves = getAlbumLeaves(album);
         const maxState = leaves.length;
@@ -396,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const setAlbumState = (album, nextState, duration = 1120) => {
+    const setAlbumState = (album, nextState, duration = VP_FLIP_DURATION) => {
         const maxState = Number(album.dataset.maxState || getAlbumLeaves(album).length || 0);
         const bounded = Math.max(0, Math.min(maxState, nextState));
         const previousState = Number(album.dataset.state || '0');
@@ -472,10 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let progress = 0;
             if (dragMode === 'forward' && lastDx < 0) {
-                progress = Math.min(1, Math.abs(lastDx) / 220);
+                progress = Math.min(1, Math.abs(lastDx) / VP_DRAG_PROGRESS_DISTANCE);
                 activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
             } else if (dragMode === 'backward' && lastDx > 0) {
-                progress = Math.min(1, lastDx / 220);
+                progress = Math.min(1, lastDx / VP_DRAG_PROGRESS_DISTANCE);
                 activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
             }
         };
@@ -622,11 +625,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (vignetteCard && vignetteModal) {
+        const localNav = vignetteModal.querySelector('.vp-sticky-nav');
+        const localNavToggle = vignetteModal.querySelector('.vp-nav-toggle');
         const navLinks = vignetteModal.querySelectorAll('.vp-nav-link');
         const bodyScroll = vignetteModal.querySelector('.vp-modal-body');
-        const sections = vignetteModal.querySelectorAll('.vp-template-section');
+        const sections = vignetteModal.querySelectorAll('#vp-pricing, .vp-template-section');
         const pricingCards = vignetteModal.querySelectorAll('.vp-price-card.vp-reveal');
         let pricingObserver = null;
+
+        const closeLocalNav = () => {
+            if (!localNav || !localNavToggle) {
+                return;
+            }
+            localNav.classList.remove('is-open');
+            localNavToggle.setAttribute('aria-expanded', 'false');
+            const label = localNavToggle.querySelector('.vp-nav-toggle-text');
+            if (label) {
+                label.textContent = 'Меню';
+            }
+        };
+
+        if (localNav && localNavToggle) {
+            localNavToggle.addEventListener('click', () => {
+                const willOpen = !localNav.classList.contains('is-open');
+                localNav.classList.toggle('is-open', willOpen);
+                localNavToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                const label = localNavToggle.querySelector('.vp-nav-toggle-text');
+                if (label) {
+                    label.textContent = willOpen ? 'Жабу' : 'Меню';
+                }
+            });
+        }
 
         const revealPricingCards = () => {
             if (!pricingCards.length) {
@@ -672,6 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setActiveNav(targetId);
                 const topOffset = target.offsetTop - 12;
                 bodyScroll.scrollTo({ top: topOffset, behavior: 'smooth' });
+                closeLocalNav();
             });
         });
 
@@ -699,6 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
             vignetteModal.classList.remove('visible');
             vignetteModal.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('no-scroll');
+            closeLocalNav();
         };
 
         vignetteCard.addEventListener('click', () => {
@@ -708,7 +739,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (bodyScroll) {
                 bodyScroll.scrollTo({ top: 0, behavior: 'auto' });
             }
-            setActiveNav('vp-template-1');
+            setActiveNav('vp-pricing');
+            closeLocalNav();
             if (!pricingObserver) {
                 revealPricingCards();
             }
