@@ -381,11 +381,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const setAlbumState = (album, nextState, duration = 900) => {
+    const setAlbumState = (album, nextState, duration = 1120) => {
         const maxState = Number(album.dataset.maxState || getAlbumLeaves(album).length || 0);
         const bounded = Math.max(0, Math.min(maxState, nextState));
+        const previousState = Number(album.dataset.state || '0');
 
-        if (Number(album.dataset.state || '0') === bounded) {
+        if (previousState === bounded) {
             applyAlbumVisualState(album, bounded);
             return;
         }
@@ -398,9 +399,33 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        window.setTimeout(() => {
+        const leaves = getAlbumLeaves(album);
+        const animatedLeafIndex = bounded > previousState ? previousState : Math.max(0, bounded);
+        const animatedLeaf = leaves[animatedLeafIndex] || null;
+
+        const clearAnimating = () => {
             album.classList.remove('vp-animating');
-        }, duration);
+        };
+
+        let released = false;
+        const releaseOnce = () => {
+            if (released) {
+                return;
+            }
+            released = true;
+            clearAnimating();
+        };
+
+        if (animatedLeaf) {
+            const handleTransitionEnd = (event) => {
+                if (event.propertyName === 'transform') {
+                    releaseOnce();
+                }
+            };
+            animatedLeaf.addEventListener('transitionend', handleTransitionEnd, { once: true });
+        }
+
+        window.setTimeout(releaseOnce, duration + 120);
     };
 
     const initPremiumAlbum = (album) => {
@@ -418,8 +443,27 @@ document.addEventListener('DOMContentLoaded', () => {
         let startX = 0;
         let activeLeaf = null;
         let dragMode = '';
+        let lastDx = 0;
+        let dragFrameId = null;
 
         const getState = () => Number(album.dataset.state || '0');
+
+        const renderDragFrame = () => {
+            dragFrameId = null;
+
+            if (!dragging || !activeLeaf) {
+                return;
+            }
+
+            let progress = 0;
+            if (dragMode === 'forward' && lastDx < 0) {
+                progress = Math.min(1, Math.abs(lastDx) / 220);
+                activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
+            } else if (dragMode === 'backward' && lastDx > 0) {
+                progress = Math.min(1, lastDx / 220);
+                activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
+            }
+        };
 
         controls.forEach((control) => {
             control.addEventListener('click', (event) => {
@@ -484,6 +528,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (activeLeaf) {
                 activeLeaf.classList.add('vp-is-dragging');
+                activeLeaf.style.transition = 'none';
+                album.classList.add('vp-dragging');
             } else {
                 dragging = false;
                 return;
@@ -504,13 +550,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 moved = true;
             }
 
-            let progress = 0;
-            if (dragMode === 'forward' && dx < 0) {
-                progress = Math.min(1, Math.abs(dx) / 170);
-                activeLeaf.style.transform = `rotateY(${-180 * progress}deg)`;
-            } else if (dragMode === 'backward' && dx > 0) {
-                progress = Math.min(1, dx / 170);
-                activeLeaf.style.transform = `rotateY(${-180 + 180 * progress}deg)`;
+            lastDx = dx;
+            if (dragFrameId === null) {
+                dragFrameId = window.requestAnimationFrame(renderDragFrame);
             }
         });
 
@@ -520,13 +562,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const dx = event.clientX - startX;
-            const threshold = 70;
+            const threshold = 82;
             const state = getState();
+
+            if (dragFrameId !== null) {
+                window.cancelAnimationFrame(dragFrameId);
+                dragFrameId = null;
+            }
 
             if (activeLeaf) {
                 activeLeaf.classList.remove('vp-is-dragging');
                 activeLeaf.style.transform = '';
+                activeLeaf.style.transition = '';
             }
+            album.classList.remove('vp-dragging');
 
             if (dragMode === 'forward') {
                 setAlbumState(album, dx < -threshold ? state + 1 : state);
@@ -535,13 +584,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 setAlbumState(album, dx > threshold ? state - 1 : state);
             }
 
-            if (Math.abs(dx) < 8) {
+            if (Math.abs(dx) < 10) {
                 setAlbumState(album, state, 0);
             }
 
             dragging = false;
             activeLeaf = null;
             dragMode = '';
+            lastDx = 0;
             if (event.pointerId !== undefined) {
                 album.releasePointerCapture(event.pointerId);
             }

@@ -861,6 +861,7 @@ body {
     transform-style: preserve-3d;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     transition: transform 0.5s cubic-bezier(0.2, 0.85, 0.28, 1);
+    will-change: transform;
 }
 
 .vp-album:hover .vp-book-core {
@@ -903,9 +904,10 @@ body {
     height: 100%;
     transform-origin: left center;
     transform-style: preserve-3d;
-    transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), filter 0.9s ease;
+    transition: transform 1.02s cubic-bezier(0.2, 0.82, 0.24, 1), filter 1.02s ease;
     will-change: transform;
     --vp-curve: 0deg;
+    transform: translateZ(0);
 }
 
 .vp-leaf::after {
@@ -986,6 +988,10 @@ body {
     pointer-events: none;
 }
 
+.vp-album.vp-dragging .vp-leaf {
+    transition: none !important;
+}
+
 .vp-album.vp-animating .vp-book-core {
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.01);
 }
@@ -1024,18 +1030,18 @@ body {
     }
 
     .vp-modal-header {
-        padding: 18px 52px 8px 14px;
+        padding: 20px 56px 12px 18px;
     }
 
     .vp-modal-header h2 {
         font-size: 1.5rem;
     }
 
-    .vp-modal-body { padding: 6px 8px 16px; }
+    .vp-modal-body { padding: 10px 12px 24px; }
 
     .vp-pricing {
-        padding: 18px 14px;
-        margin-bottom: 18px;
+        padding: 20px 16px;
+        margin-bottom: 22px;
     }
 
     .vp-pricing-header {
@@ -1048,23 +1054,23 @@ body {
     }
 
     .vp-pricing-grid {
-        gap: 12px;
+        gap: 14px;
     }
 
     .vp-template-list {
-        gap: 20px;
+        gap: 24px;
     }
 
     .vp-template-section {
-        padding: 14px;
+        padding: 16px;
     }
 
     .vp-book-core {
-        width: min(860px, calc(100vw - 20px));
+        width: min(860px, calc(100vw - 34px));
     }
 
     .vp-album-item {
-        padding: 14px 12px;
+        padding: 16px 14px;
     }
 
     .vp-book-core {
@@ -1095,9 +1101,13 @@ body {
         font-size: 0.86rem;
     }
 
+    .vp-modal-body {
+        padding: 10px 10px 20px;
+    }
+
     .vp-sticky-nav {
         top: 0;
-        padding: 8px 8px 10px;
+        padding: 10px 10px 12px;
         gap: 6px;
     }
 
@@ -1108,7 +1118,7 @@ body {
 
     .vp-template-section {
         border-radius: 14px;
-        padding: 12px;
+        padding: 14px;
         scroll-margin-top: 82px;
     }
 
@@ -1123,11 +1133,11 @@ body {
 
     .vp-album-item {
         border-radius: 14px;
-        padding: 10px;
+        padding: 12px;
     }
 
     .vp-book-core {
-        width: calc(100vw - 12px);
+        width: calc(100vw - 24px);
         min-height: 220px;
     }
 
