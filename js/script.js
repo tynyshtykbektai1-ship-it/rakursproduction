@@ -9,6 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle('active');
         nav.classList.toggle('active');
         document.body.classList.toggle('no-scroll');
+
+        const isOpen = nav.classList.contains('active');
+        burger.setAttribute('aria-expanded', String(isOpen));
+        burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+
+        const burgerLabel = burger.querySelector('.burger-label');
+        if (burgerLabel) {
+            burgerLabel.textContent = isOpen ? 'Жабу' : 'Меню';
+        }
     });
     
     // Close menu when clicking a link
@@ -19,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 burger.classList.remove('active');
                 nav.classList.remove('active');
                 document.body.classList.remove('no-scroll');
+                burger.setAttribute('aria-expanded', 'false');
+                burger.setAttribute('aria-label', 'Открыть меню');
+
+                const burgerLabel = burger.querySelector('.burger-label');
+                if (burgerLabel) {
+                    burgerLabel.textContent = 'Меню';
+                }
             }
         });
     });
@@ -72,8 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'img/ciclo3.jpg', 
             'img/ciclo4.jpg',
             'img/ciclo2.jpeg',
-            'img/ciclo1.PNG',
-            'img/location1-5.jpg'
+            'img/ciclo1.PNG'  //больше нет 
         ],
         // Локация 2: JET залы
         '2': [

@@ -129,17 +129,36 @@ body {
 /* Burger Menu for Mobile */
 .burger {
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(176, 137, 104, 0.25);
+    border-radius: 999px;
     cursor: pointer;
     z-index: 101;
 }
 
-.burger span {
+.burger-label {
+    display: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.burger-lines {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.burger-lines span {
     width: 100%;
     height: 2px;
     background-color: var(--text-color);
@@ -355,10 +374,16 @@ body {
         font-size: 1.5rem;
     }
     
-    .burger { display: flex; }
-    .burger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .burger.active span:nth-child(2) { opacity: 0; }
-    .burger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    .burger {
+        display: inline-flex;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+    .burger-label { display: inline-block; }
+    .burger.active .burger-lines span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .burger.active .burger-lines span:nth-child(2) { opacity: 0; }
+    .burger.active .burger-lines span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 }
 
 /* Base Utility Classes */
@@ -1322,6 +1347,36 @@ body {
 .contact-item p, .contact-item a { color: #666; text-decoration: none; transition: var(--transition); font-size: 1.05rem; }
 .contact-item a:hover { color: var(--accent-color); text-shadow: 0 0 8px rgba(176, 137, 104, 0.4); }
 
+.contact-item-instagram {
+    align-items: flex-start;
+}
+
+.instagram-links-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.instagram-links-item {
+    background: rgba(176, 137, 104, 0.06);
+    border: 1px solid rgba(176, 137, 104, 0.14);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: grid;
+    gap: 4px;
+}
+
+.instagram-links-label {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.instagram-links-item a {
+    font-weight: 600;
+    color: #5a4a3f;
+}
+
 .btn-glow {
     box-shadow: 0 8px 25px rgba(176, 137, 104, 0.5);
     transition: all 0.4s ease;
@@ -1354,9 +1409,14 @@ body {
 .footer { 
     background: #1a1a1a; 
     color: #ccc; 
-    padding: 60px 0 40px; 
+    padding: 60px 0 0; 
     text-align: center; 
     border-top: 5px solid var(--accent-color);
+}
+
+.footer-content {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 .footer-logo { 
     display: flex; 
@@ -1374,6 +1434,43 @@ body {
     text-shadow: 0 2px 10px rgba(176, 137, 104, 0.4);
 }
 .footer-logo-img { height: 50px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; }
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 12px 0 16px;
+}
+
+.footer-social-link {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.footer-social-link i {
+    font-size: 1.2rem;
+}
+
+.footer-social-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(176, 137, 104, 0.75);
+    box-shadow: 0 10px 22px rgba(176, 137, 104, 0.26);
+}
+
+.footer-content p {
+    margin-bottom: 0;
+}
 
 /* Vignette Clickable Card */
 .clickable-service {
