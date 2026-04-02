@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationImages = {
         // Локация 1: Циклорама залы
         '1': [
-            'img/ciclo3.jpg', 
-            'img/ciclo4.jpg',
+            'img/ciclo1.webp', 
             'img/ciclo2.jpeg',
-            'img/ciclo1.PNG'  //больше нет 
+            'img/ciclo3.webp',
+            'img/ciclo4.webp'  
         ],
         // Локация 2: JET залы
         '2': [
