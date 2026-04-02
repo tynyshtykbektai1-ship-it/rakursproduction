@@ -1826,8 +1826,8 @@ body.no-scroll {
         inset: 0;
         z-index: 1;
         background-image: inherit;
-        background-size: contain;
-        background-position: center top;
+        background-size: cover;
+        background-position: center center;
         background-repeat: no-repeat;
     }
     .hero-overlay { z-index: 2; }
