@@ -726,6 +726,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const closeVignetteModal = () => {
+            const nestedWhyUsModal = document.getElementById('why-us-modal');
+            if (nestedWhyUsModal) {
+                nestedWhyUsModal.classList.remove('is-visible');
+                nestedWhyUsModal.setAttribute('aria-hidden', 'true');
+            }
             vignetteModal.classList.remove('visible');
             vignetteModal.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('no-scroll');
@@ -759,6 +764,48 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && vignetteModal.classList.contains('visible')) {
                 closeVignetteModal();
+            }
+        });
+    }
+
+    // --- Why Us Floating Modal ---
+    const whyUsModal = document.getElementById('why-us-modal');
+    const whyUsOpenButtons = document.querySelectorAll('[data-why-us-open]');
+    const whyUsCloseButton = whyUsModal ? whyUsModal.querySelector('[data-why-us-close]') : null;
+
+    if (whyUsModal && whyUsOpenButtons.length) {
+        const openWhyUsModal = () => {
+            whyUsModal.classList.add('is-visible');
+            whyUsModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('no-scroll');
+        };
+
+        const closeWhyUsModal = () => {
+            whyUsModal.classList.remove('is-visible');
+            whyUsModal.setAttribute('aria-hidden', 'true');
+            const isVignetteStillVisible = !!(vignetteModal && vignetteModal.classList.contains('visible'));
+            if (!isVignetteStillVisible) {
+                document.body.classList.remove('no-scroll');
+            }
+        };
+
+        whyUsOpenButtons.forEach((button) => {
+            button.addEventListener('click', openWhyUsModal);
+        });
+
+        if (whyUsCloseButton) {
+            whyUsCloseButton.addEventListener('click', closeWhyUsModal);
+        }
+
+        whyUsModal.addEventListener('click', (event) => {
+            if (event.target === whyUsModal) {
+                closeWhyUsModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && whyUsModal.classList.contains('is-visible')) {
+                closeWhyUsModal();
             }
         });
     }
@@ -863,6 +910,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize New Premium Mobile Features Swiper
 document.addEventListener('DOMContentLoaded', () => {
+    const mobileFeaturesEl = document.querySelector('.mobile-features-swiper');
+    if (!mobileFeaturesEl) {
+        return;
+    }
+
     const mobileFeaturesSwiper = new Swiper('.mobile-features-swiper', {
         slidesPerView: 1.25,
         centeredSlides: true,

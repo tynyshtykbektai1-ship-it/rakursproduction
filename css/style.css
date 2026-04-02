@@ -28,6 +28,10 @@ body {
     overflow-x: hidden;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -578,7 +582,8 @@ body {
 .vp-modal-shell {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
     border-radius: 0;
     background: linear-gradient(160deg, #fcfbf8 0%, #f7f3ed 100%);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -598,17 +603,35 @@ body {
     position: absolute;
     right: 18px;
     top: 12px;
-    width: 42px;
+    min-width: 42px;
     height: 42px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.88);
-    font-size: 1.8rem;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(176, 137, 104, 0.45);
+    background: rgba(255, 255, 255, 0.96);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
     line-height: 1;
+    font-weight: 700;
     cursor: pointer;
     color: #2d2a27;
-    transition: transform 0.25s ease, background-color 0.25s ease;
+    box-shadow: 0 8px 20px rgba(22, 18, 15, 0.2);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
     z-index: 8;
+}
+
+.vp-close-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.vp-close-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
 }
 
 .vp-top-title {
@@ -661,8 +684,12 @@ body {
 }
 
 .vp-close:hover {
-    transform: rotate(90deg);
     background-color: #fff;
+    box-shadow: 0 12px 24px rgba(22, 18, 15, 0.26);
+}
+
+.vp-close:hover .vp-close-icon {
+    transform: rotate(90deg);
 }
 
 .vp-modal-header {
@@ -1089,17 +1116,24 @@ body {
 @media (max-width: 768px) {
     .vignette-premium-modal {
         padding: 0;
+        align-items: stretch;
+        justify-content: stretch;
     }
 
     .vp-modal-shell {
+        position: fixed;
+        inset: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
+        max-height: 100dvh;
         border-radius: 0;
     }
 
     .vp-close {
         top: 14px;
         right: 14px;
+        height: 40px;
+        padding: 0 11px;
     }
 
     .vp-top-title {
@@ -1116,7 +1150,14 @@ body {
         font-size: 0.88rem;
     }
 
-    .vp-modal-body { padding: 10px 12px 24px; }
+    .vp-modal-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 12px 24px;
+    }
 
     .vp-sticky-nav {
         justify-content: space-between;
@@ -1191,6 +1232,11 @@ body {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     }
 
+    .vp-album:hover .vp-book-core,
+    .vp-album.vp-animating .vp-book-core {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
     .vp-album-controls {
         margin-top: 10px;
     }
@@ -1198,8 +1244,13 @@ body {
 
 @media (max-width: 520px) {
     .vp-close {
-        width: 40px;
+        min-width: 40px;
         height: 40px;
+        padding: 0 10px;
+    }
+
+    .vp-close-text {
+        font-size: 0.84rem;
     }
 
     .vp-instagram-fab {
@@ -1820,6 +1871,240 @@ body {
     border-radius: 4px;
     opacity: 1;
     box-shadow: 0 2px 8px rgba(176, 137, 104,0.4);
+}
+
+/* Why Us Floating Experience */
+.why-us-teaser {
+    margin: 10px auto 0;
+    max-width: 760px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #ffffff 0%, #f7f3ee 100%);
+    border: 1px solid rgba(176, 137, 104, 0.18);
+    box-shadow: 0 16px 40px rgba(22, 18, 14, 0.08);
+    text-align: center;
+    padding: 28px 24px;
+}
+
+.why-us-teaser p {
+    margin: 0 0 14px;
+    color: #3f3731;
+    font-size: 1.02rem;
+}
+
+.why-us-teaser-btn {
+    border: 1px solid rgba(176, 137, 104, 0.38);
+    border-radius: 999px;
+    background: #fff;
+    color: #3f332b;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.why-us-teaser-btn:hover {
+    transform: translateY(-2px);
+    border-color: #b08968;
+    box-shadow: 0 10px 22px rgba(176, 137, 104, 0.2);
+}
+
+.why-us-floating-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1402;
+    min-height: 54px;
+    border-radius: 999px;
+    border: 1px solid rgba(176, 137, 104, 0.42);
+    background: linear-gradient(145deg, #ffffff 0%, #f1ebe3 100%);
+    color: #3a2f28;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0 24px;
+    cursor: pointer;
+    box-shadow: 0 14px 34px rgba(20, 16, 13, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.65) inset;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.why-us-floating-btn:hover {
+    transform: translateY(-4px);
+    border-color: #b08968;
+    box-shadow: 0 20px 42px rgba(20, 16, 13, 0.26), 0 0 26px rgba(176, 137, 104, 0.22);
+}
+
+.why-us-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: rgba(18, 15, 12, 0.46);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.42s ease;
+}
+
+.why-us-modal.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.why-us-modal-card {
+    width: min(760px, 100%);
+    max-height: min(88vh, 920px);
+    overflow: auto;
+    position: relative;
+    border-radius: 28px;
+    background: linear-gradient(160deg, #ffffff 0%, #f9f5ef 100%);
+    border: 1px solid rgba(176, 137, 104, 0.16);
+    box-shadow: 0 30px 68px rgba(16, 13, 11, 0.34);
+    padding: 28px 24px 24px;
+    transform: scale(0.94) translateY(16px);
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.why-us-modal.is-visible .why-us-modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.why-us-modal-close {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    color: #332922;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-us-modal-close:hover {
+    transform: rotate(90deg);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.why-us-modal-card h3 {
+    margin: 0 0 18px;
+    padding-right: 54px;
+    color: #2f241d;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    letter-spacing: 0.01em;
+}
+
+.why-us-list {
+    display: grid;
+    gap: 12px;
+}
+
+.why-us-item {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    align-items: start;
+    background: #fff;
+    border: 1px solid rgba(176, 137, 104, 0.14);
+    border-radius: 18px;
+    padding: 14px 14px 13px;
+    box-shadow: 0 8px 20px rgba(20, 16, 13, 0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.why-us-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(20, 16, 13, 0.14);
+}
+
+.why-us-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid rgba(176, 137, 104, 0.22);
+    background: linear-gradient(160deg, #fff 0%, #f2ece5 100%);
+    display: grid;
+    place-items: center;
+    color: #7a5f4b;
+}
+
+.why-us-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.why-us-item h4 {
+    margin: 0 0 3px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2f2822;
+}
+
+.why-us-item p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #5a4f45;
+    line-height: 1.48;
+}
+
+.why-us-accent {
+    margin: 18px 0 0;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(176, 137, 104, 0.1);
+    border: 1px solid rgba(176, 137, 104, 0.2);
+    color: #433830;
+    font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .why-us-floating-btn {
+        right: 12px;
+        bottom: 14px;
+        min-height: 50px;
+        padding: 0 18px;
+        font-size: 0.84rem;
+    }
+
+    .why-us-modal {
+        padding: 12px;
+    }
+
+    .why-us-modal-card {
+        border-radius: 22px;
+        padding: 20px 14px 16px;
+        max-height: 90vh;
+    }
+
+    .why-us-item {
+        grid-template-columns: 32px 1fr;
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    .why-us-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .why-us-item h4 {
+        font-size: 0.95rem;
+    }
+
+    .why-us-item p {
+        font-size: 0.86rem;
+    }
 }
 
 /* --- Love Story Modal --- */

@@ -6,6 +6,7 @@
     <title>Rakurs Production | Үздік Фотостудия 2025</title>
 <link rel="icon" href="img/logo.ico">
     <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/booking-availability.css?v=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -239,121 +240,25 @@
             </div>
         </section>
 
-        <!-- Vignettes Section (Interactive 3D Book) -->
-        <!-- Why Choose Us / Advantage -->
-        <section id="why-us" class="section">
-            <div class="container">
-                <h2 class="section-title fade-in">Неге бізді таңдайды</h2>
-                
-                <!-- Premium Mobile & Desktop Slider -->
-                <div class="mobile-slider-wrapper fade-in">
-                    <div class="swiper mobile-features-swiper">
-                        <div class="swiper-wrapper">
-                            
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper" style="filter: grayscale(100%);">
-                                    <img src="img/why2.png" alt="Барлығы бір жерде">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>Барлығы бір жерде</h4>
-                                    <p>Макияж, прическа, фотостудия, киім, фотоөңдеу мен видеоөңдеу - бәрі бір жерде.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/why2.jpg" alt="LOVE STORY-ҒА ЖАБДЫҚТАЛҒАН ЛОКАЦИЯ">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>LOVE STORY-ҒА ЖАБДЫҚТАЛҒАН ЛОКАЦИЯ</h4>
-                                    <p>Love Story үшін 5 ерекше локация. Қонақ үй мен Jet-ерекше локация, мұндай кадр тек бізде мүмкін.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/why3.jpg" alt="Ақтөбе 2025">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>"Ең үздік фотостудия"</h4>
-                                    <p>Көпжылдық тәжірибесі бар команда. Әр клиентпен жеке жұмыс, позинг көмегі, толық бағыт-бағдар.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/clothes.png" alt="Фотосессияға арналған киім жинағы">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>Фотосессияға арналған киім жинағы</h4>
-                                    <p>Студияда дайын: ұлттық киімдер, сәнді кешкі көйлектер, той көйлектері, әр образға сай стильдер.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/paket.png" alt="Қыз ұзату мен тойға арнайы пакет">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>Қыз ұзату мен тойға арнайы пакет</h4>
-                                    <p>Real time, флешка, мобилограф, QR фото, фотообработка, видеообработка, мольберт.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/otziv.png" alt="Мыңдаған риза жұптар">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>Мыңдаған риза жұптар</h4>
-                                    <p>Біз әр кадрды кәсіби түрде жасаймыз, клиенттеріміздің сенімді пікірлері жұмысымыздың дәлелі.</p>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide mobile-feature-card">
-                                <div class="card-image-wrapper">
-                                    <img src="img/dogovor.png" alt="Арнайы договор">
-                                </div>
-                                <div class="card-text-wrapper">
-                                    <h4>Арнайы договор</h4>
-                                    <p>Барлығы ресми, нақты және сенімді. Уақыты, қызметі, бағасы - бәрі бекітіледі.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        
-                        <!-- Pagination -->
-                        <div class="swiper-pagination custom-mobile-pagination"></div>
-                    </div>
-                </div>
-
         <section id="booking" class="section">
             <div class="container">
                 <h2 class="section-title fade-in">Брондау</h2>
-                <div class="booking-container fade-in">
-                    <div class="booking-info">
-                        <h3>Бос күндер</h3>
-                        <p>Өзекті бос күндер кестесін тексеру үшін төмендегі батырманы басыңыз.</p>
-                        <button id="fetch-dates-btn" class="btn btn-primary" style="margin-bottom: 20px;">
-                            <i class="fa-solid fa-calendar-check"></i> Қолжетімді күндерді көрсету
-                        </button>
-                    </div>
-                    
-                    <div id="loading-spinner" style="display: none; padding: 20px;">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--accent-color);"></i>
-                        <p style="margin-top: 10px; color: #666;">Студия кестесін талдау...</p>
+                <div id="booking-availability" class="booking-availability fade-in" aria-live="polite">
+                    <div class="booking-availability-head">
+                        <h3>Қолжетімді күндер мен уақыт интервалдары</h3>
+                        <p>Студия уақыты 09:00-22:00 аралығында. Батырманы басып, бос интервалдарды көріп, ыңғайлы уақытты WhatsApp арқылы бірден брондаңыз.</p>
                     </div>
 
-                    <div class="calendar-wrapper" id="calendar-wrapper" style="display: none;">
-                        <div class="calendar" id="booking-calendar"></div>
+                    <div class="booking-availability-toolbar">
+                        <button type="button" class="ba-button" data-booking-load>
+                            <span class="ba-spinner" data-spinner hidden></span>
+                            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            <span>Узнать доступные даты</span>
+                        </button>
+                        <span class="ba-status" data-booking-status>Деректер жүктелмеген</span>
                     </div>
-                    
-                    <div class="booking-action" id="booking-action" style="display: none;">
-                        <p>Сіз таңдадыңыз: <strong id="selected-date-display">...</strong></p>
-                        <a href="https://wa.me/77713434499" target="_blank" class="btn btn-primary" id="whatsapp-btn">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp-қа жазу
-                        </a>
-                    </div>
+
+                    <div class="ba-result" data-booking-result></div>
                 </div>
             </div>
         </section>
@@ -454,7 +359,85 @@
                     </svg>
                     <span>Instagram</span>
                 </a>
-                <button class="vp-close" type="button" aria-label="Жабу">&times;</button>
+                <button class="vp-close" type="button" aria-label="Шығу">
+                    <span class="vp-close-icon" aria-hidden="true">&times;</span>
+                    <span class="vp-close-text">Шығу</span>
+                </button>
+
+                <button class="why-us-floating-btn" type="button" data-why-us-open aria-haspopup="dialog" aria-controls="why-us-modal">
+                    Не үшін біз
+                </button>
+
+                <div id="why-us-modal" class="why-us-modal" aria-hidden="true">
+                    <div class="why-us-modal-card" role="dialog" aria-modal="true" aria-labelledby="why-us-modal-title">
+                        <button class="why-us-modal-close" type="button" data-why-us-close aria-label="Жабу">&times;</button>
+                        <h3 id="why-us-modal-title">Не үшін біз</h3>
+
+                        <div class="why-us-list" role="list">
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M4 18h16v2H4zm2-2 3.6-9.8A2.2 2.2 0 0 1 11.7 5h.6a2.2 2.2 0 0 1 2.1 1.2L18 16z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Ерекше локация</h4>
+                                    <p>Jet локация және қаладағы ең үлкен циклорама. Кең ракурс, премиум жарық.</p>
+                                </div>
+                            </article>
+
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm2 4v8h10V8z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Жоғары сапа</h4>
+                                    <p>Арнайы типография қолданылады. Түсі оңбайды, ұзақ сақталады.</p>
+                                </div>
+                            </article>
+
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="m12 2 2.5 5.1L20 8l-4 3.9.9 5.6L12 15l-4.9 2.5.9-5.6L4 8l5.5-.9z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Тәжірибе және марапат</h4>
+                                    <p>Көп жылдық тәжірибе және «2025 жылдың үздік фотостудиясы» атағы.</p>
+                                </div>
+                            </article>
+
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5v1h2a2 2 0 0 1 2 2v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-8a2 2 0 0 1 2-2h2V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v1h6V7a3 3 0 0 0-3-3z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Бонус</h4>
+                                    <p>20+ оқушы болғанда мұғалімге және ұйымдастырушыға тегін виньетка.</p>
+                                </div>
+                            </article>
+
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M6 3h12v3h2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6h2zm2 5v10h8V8z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Гардероб</h4>
+                                    <p>Дайын киімдер бар. Уақыт үнемделеді, образ тез жиналады.</p>
+                                </div>
+                            </article>
+
+                            <article class="why-us-item" role="listitem">
+                                <span class="why-us-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5.2 3.4 8.8 8 10 4.6-1.2 8-4.8 8-10V6zm-1 13-3-3 1.4-1.4L11 12.2l3.6-3.6L16 10z"/></svg>
+                                </span>
+                                <div>
+                                    <h4>Сенімділік</h4>
+                                    <p>Барлығы ресми түрде жүреді. Ресми келісімшарт жасаймыз.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <p class="why-us-accent">Виньетка - өмір бойы сақталады. Сапаны таңдаңыз.</p>
+                    </div>
+                </div>
 
                 <div class="vp-top-title">Прайс лист және виньеткалар үлгілері</div>
 
@@ -468,25 +451,13 @@
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-1">11-9 сынып(1-разворот)</button>
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-2">11-9(2-разворот)</button>
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-3">Жас түлек</button>
-                        <button type="button" class="vp-nav-link" data-scroll-target="vp-template-4">Төртінші шаблон • Бала-бақшамен қоштасу</button>
+                        <button type="button" class="vp-nav-link" data-scroll-target="vp-template-4">Бала-бақшамен қоштасу</button>
+                        <button type="button" class="vp-nav-link" data-scroll-target="vp-template-5">Бастауыш сынып</button>
                     </div>
                 </div>
 
                 <div class="vp-modal-body">
                     <section class="vp-pricing" id="vp-pricing">
-            
-
-                        <div class="vp-pricing-notice" role="note" aria-label="Ескерту">
-                            <div class="vp-notice-icon" aria-hidden="true">⚠</div>
-                            <div>
-                                <h4>Ескертетін жайт:</h4>
-                                <ul>
-                                    <li>Тапсырыс 20 оқушыдан жоғары болуы тиіс</li>
-                                    <li>Ұйымдастырушы мен мұғалімге тегін</li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <div class="vp-pricing-grid">
                             <article class="vp-price-card vp-reveal">
                                 <h4>1 ПАКЕТ</h4>
@@ -544,6 +515,17 @@
                                     <li>3 образ</li>
                                 </ul>
                             </article>
+                        </div>
+
+                        <div class="vp-pricing-notice" role="note" aria-label="Ескерту">
+                            <div class="vp-notice-icon" aria-hidden="true">⚠</div>
+                            <div>
+                                <h4>Ескертетін жайт:</h4>
+                                <ul>
+                                    <li>Тапсырыс 20 оқушыдан жоғары болуы тиіс</li>
+                                    <li>Ұйымдастырушы мен мұғалімге тегін</li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
 
@@ -628,19 +610,49 @@
                         </section>
 
                         <section class="vp-template-section" id="vp-template-4" data-template-id="vp-template-4">
-                            <h3>Төртінші шаблон • Бала-бақшамен қоштасу</h3>
+                            <h3>Бала-бақшамен қоштасу</h3>
                             <article class="vp-album-item">
                                 <div class="vp-album" data-state="0">
                                     <div class="vp-book-scene">
                                         <div class="vp-book-core">
                                             <div class="vp-spine-shadow"></div>
                                             <div class="vp-leaf vp-leaf-front" data-leaf="1">
-                                                <div class="vp-face vp-front"><img src="img/vin6.jpeg" alt="Front cover"></div>
-                                                <div class="vp-face vp-back"><img src="img/vin7.jpeg" alt="Inside left"></div>
+                                                <div class="vp-face vp-front"><img src="img/vin16.jpeg" alt="Front cover"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin17.jpeg" alt="Inside left"></div>
                                             </div>
                                             <div class="vp-leaf vp-leaf-back" data-leaf="2">
-                                                <div class="vp-face vp-front"><img src="img/vin8.jpeg" alt="Inside right"></div>
-                                                <div class="vp-face vp-back"><img src="img/vin9.jpeg" alt="Back cover"></div>
+                                                <div class="vp-face vp-front"><img src="img/vin18.jpeg" alt="Inside right"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin19.jpeg" alt="Back cover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vp-album-controls">
+                                        <button type="button" class="vp-control" data-action="prev">Артқа</button>
+                                        <button type="button" class="vp-control" data-action="next">Алға</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+
+                        <section class="vp-template-section" id="vp-template-5" data-template-id="vp-template-5">
+                            <h3>Бастауыш сынып</h3>
+                            <article class="vp-album-item">
+                                <div class="vp-album" data-state="0">
+                                    <div class="vp-book-scene">
+                                        <div class="vp-book-core">
+                                            <div class="vp-spine-shadow"></div>
+                                            <div class="vp-leaf vp-leaf-front" data-leaf="1">
+                                                <div class="vp-face vp-front"><img src="img/vin20.jpeg" alt="Бастауыш сынып мұқаба"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin21.jpeg" alt="Бастауыш сынып ішкі бет"></div>
+                                            </div>
+                                            <div class="vp-leaf" data-leaf="2">
+
+                                                <div class="vp-face vp-front"><img src="img/vin22.jpeg" alt="Бастауыш сынып қосымша бет 1"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin23.jpeg" alt="Бастауыш сынып қосымша бет 2"></div>
+                                            </div>
+                                            <div class="vp-leaf vp-leaf-back" data-leaf="3">
+                                                <div class="vp-face vp-front"><img src="img/vin24.jpeg" alt="Бастауыш сынып ішкі оң бет"></div>
+                                                <div class="vp-face vp-back"><img src="img/vin25.jpeg" alt="Бастауыш сынып артқы мұқаба"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -689,8 +701,8 @@
                                 <li><i class="fa-solid fa-check"></i> Фотограф</li>
                                 <li><i class="fa-solid fa-check"></i> Видеограф</li>
                                 <li><i class="fa-solid fa-check"></i> 2 мольберт</li>
-                                <li><i class="fa-solid fa-check"></i> Фотообработка (170–190 фото)</li>
-                                <li><i class="fa-solid fa-check"></i> Ретушь (10–20 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Фотообработка (170-190 фото)</li>
+                                <li><i class="fa-solid fa-check"></i> Ретушь (10-20 фото)</li>
                             </ul>
                             <div class="ls-pkg-outfits">
                                 <h5>📦 Бізден алуға болады:</h5>
@@ -1289,6 +1301,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/booking-availability.js"></script>
 </body>
 </html>
 

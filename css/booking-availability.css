@@ -1,0 +1,196 @@
+/* Booking availability widget (isolated styles) */
+.booking-availability {
+    --ba-bg: #ffffff;
+    --ba-border: rgba(17, 17, 17, 0.08);
+    --ba-muted: #6f7176;
+    --ba-title: #1b1d21;
+    --ba-accent: #b08968;
+    --ba-accent-soft: rgba(176, 137, 104, 0.12);
+    --ba-shadow: 0 18px 36px rgba(20, 20, 20, 0.08);
+    --ba-radius-lg: 22px;
+    --ba-radius-md: 16px;
+    --ba-radius-sm: 999px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 34px 30px;
+    background: linear-gradient(180deg, #fff 0%, #fcfaf8 100%);
+    border: 1px solid var(--ba-border);
+    border-radius: var(--ba-radius-lg);
+    box-shadow: var(--ba-shadow);
+}
+
+.booking-availability-head {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.booking-availability-head h3 {
+    margin: 0;
+    color: var(--ba-title);
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    letter-spacing: 0.01em;
+}
+
+.booking-availability-head p {
+    margin: 0;
+    color: var(--ba-muted);
+    font-size: 0.98rem;
+    max-width: 700px;
+    line-height: 1.55;
+}
+
+.booking-availability-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ba-button {
+    border: 1px solid rgba(176, 137, 104, 0.45);
+    background: linear-gradient(180deg, #b99678 0%, #a97f5e 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 11px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+    box-shadow: 0 12px 24px rgba(176, 137, 104, 0.25);
+}
+
+.ba-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 16px 30px rgba(176, 137, 104, 0.34);
+}
+
+.ba-button:active {
+    transform: translateY(0);
+}
+
+.ba-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: none;
+}
+
+.ba-status {
+    color: var(--ba-muted);
+    font-size: 0.92rem;
+}
+
+.ba-spinner {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    animation: ba-spin 0.8s linear infinite;
+}
+
+@keyframes ba-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ba-result {
+    display: grid;
+    gap: 14px;
+}
+
+.ba-empty {
+    padding: 16px 18px;
+    border: 1px dashed rgba(176, 137, 104, 0.35);
+    border-radius: 12px;
+    background: rgba(176, 137, 104, 0.06);
+    color: #6f5b4b;
+    font-size: 0.95rem;
+}
+
+.ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ba-day-card {
+    background: var(--ba-bg);
+    border: 1px solid rgba(176, 137, 104, 0.2);
+    border-radius: var(--ba-radius-md);
+    padding: 14px;
+    box-shadow: 0 10px 24px rgba(20, 20, 20, 0.06);
+    display: grid;
+    gap: 12px;
+    transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.ba-day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 28px rgba(20, 20, 20, 0.1);
+}
+
+.ba-date {
+    margin: 0;
+    color: var(--ba-title);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.ba-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ba-slot {
+    border: 1px solid rgba(176, 137, 104, 0.3);
+    background: var(--ba-accent-soft);
+    color: #5a4737;
+    border-radius: var(--ba-radius-sm);
+    padding: 6px 11px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ba-slot:hover {
+    transform: translateY(-1px);
+    border-color: rgba(176, 137, 104, 0.6);
+    background: rgba(176, 137, 104, 0.18);
+}
+
+@media (max-width: 992px) {
+    .ba-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .booking-availability {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    .booking-availability-toolbar {
+        align-items: stretch;
+    }
+
+    .ba-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ba-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
