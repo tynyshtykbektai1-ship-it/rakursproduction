@@ -732,6 +732,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 nestedWhyUsModal.classList.remove('is-visible');
                 nestedWhyUsModal.setAttribute('aria-hidden', 'true');
             }
+            const nestedFaqModal = document.getElementById('faq-modal');
+            if (nestedFaqModal) {
+                nestedFaqModal.classList.remove('is-visible');
+                nestedFaqModal.setAttribute('aria-hidden', 'true');
+            }
             vignetteModal.classList.remove('visible');
             vignetteModal.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('no-scroll');
@@ -828,6 +833,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- FAQ Floating Modal ---
+    const faqModal = document.getElementById('faq-modal');
+    const faqOpenButtons = document.querySelectorAll('[data-faq-open]');
+    const faqCloseButton = faqModal ? faqModal.querySelector('[data-faq-close]') : null;
+
+    if (faqModal && faqOpenButtons.length) {
+        const openFaqModal = () => {
+            faqModal.classList.add('is-visible');
+            faqModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('no-scroll');
+        };
+
+        const closeFaqModal = () => {
+            faqModal.classList.remove('is-visible');
+            faqModal.setAttribute('aria-hidden', 'true');
+            const isVignetteStillVisible = !!(vignetteModal && vignetteModal.classList.contains('visible'));
+            const isWhyUsStillVisible = !!(whyUsModal && whyUsModal.classList.contains('is-visible'));
+            if (!isVignetteStillVisible && !isWhyUsStillVisible) {
+                document.body.classList.remove('no-scroll');
+            }
+        };
+
+        faqOpenButtons.forEach((button) => {
+            button.addEventListener('click', openFaqModal);
+        });
+
+        if (faqCloseButton) {
+            faqCloseButton.addEventListener('click', closeFaqModal);
+        }
+
+        faqModal.addEventListener('click', (event) => {
+            if (event.target === faqModal) {
+                closeFaqModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && faqModal.classList.contains('is-visible')) {
+                closeFaqModal();
+            }
+        });
+    }
+
     // --- Booking Calendar Integration (Google Sheets parser) ---
     const fetchDatesBtn = document.getElementById('fetch-dates-btn');
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -897,7 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const formattedDate = `${dayNumStr} ${monthStr}`;
                     selectedDateDisplay.textContent = formattedDate;
                     
-                    const textMessage = encodeURIComponent(`Здравствуйте! Хочу забронировать фотостудию RAKurs на ${formattedDate}. Подскажите свободное время?`);
+                    const textMessage = encodeURIComponent(`Сәлеметсіз бе! ${formattedDate} күні RAKurs фотостудиясын броньдағым келеді. Бос уақытты айтып жібересіз бе?`);
                     whatsappBtn.href = `https://wa.me/77713434499?text=${textMessage}`;
                     
                     bookingAction.style.display = 'flex';

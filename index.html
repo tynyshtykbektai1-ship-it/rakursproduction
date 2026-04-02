@@ -49,7 +49,7 @@
     <main>
         <!-- Hero Section -->
         <!-- Чтобы изменить фоновое изображение, поменяйте путь в url(...) ниже на свое изображение (например, img/my-photo.jpg) -->
-        <section id="home" class="hero" style="background-image: url('img/herobg.jpeg');">
+        <section id="home" class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">Rakurs Production</h1>
                 <p class="hero-subtitle">Үздік фотостудия 2025</p>
@@ -368,6 +368,10 @@
                 >
                     Локацияларды көру
                 </a>
+                <button class="vp-faq-fab" type="button" data-faq-open aria-haspopup="dialog" aria-controls="faq-modal" aria-label="Жиі қойылатын сұрақтар">
+                    <span class="vp-faq-fab-icon" aria-hidden="true">?</span>
+                    <span>Жиі қойылатын сұрақтар</span>
+                </button>
                 <button class="vp-close" type="button" aria-label="Шығу">
                     <span class="vp-close-icon" aria-hidden="true">&times;</span>
                     <span class="vp-close-text">Шығу</span>
@@ -436,6 +440,41 @@
                         </div>
 
                         <p class="why-us-accent">Виньетка - өмір бойы сақталады. Сапаны таңдаңыз.</p>
+                    </div>
+                </div>
+
+                <div id="faq-modal" class="faq-modal" aria-hidden="true">
+                    <div class="faq-modal-card" role="dialog" aria-modal="true" aria-labelledby="faq-modal-title">
+                        <button class="faq-modal-close" type="button" data-faq-close aria-label="Жабу">&times;</button>
+                        <h3 id="faq-modal-title">Жиі қойылатын сұрақтар</h3>
+
+                        <div class="faq-list" role="list">
+                            <article class="faq-item" role="listitem">
+                                <h4>1. Егер топта 20 баладан аз болса не болады?</h4>
+                                <ul>
+                                    <li>20 баладан аз болған жағдайда студия арендасы бөлек төленеді.</li>
+                                    <li>Кейбір бонустар қысқартылады.</li>
+                                </ul>
+                                <p class="faq-label">Нақты шарттар:</p>
+                                <ul>
+                                    <li>17 баладан аз болса - 1 сағат студия арендасы 20 000 тг. Мұғалімге тегін.</li>
+                                    <li>15 баладан аз болса - 1 сағат студия арендасы 20 000 тг. Мұғалімге және ұйымдастырушыға тегін берілмейді.</li>
+                                </ul>
+                            </article>
+
+                            <article class="faq-item" role="listitem">
+                                <h4>2. ФК Ақтөбе формасы беріле ме?</h4>
+                                <p>Жоқ, форма берілмейді. Ол тек декор (безендіру) ретінде қолданылады.</p>
+                            </article>
+
+                            <article class="faq-item" role="listitem">
+                                <h4>3. Түсірілімнен кейін қанша күнде дайын болады?</h4>
+                                <ul>
+                                    <li>Фото өңдеу - 5 жұмыс күні ішінде дайын болады.</li>
+                                    <li>Дизайн (виньетка) - 15-20 күн ішінде жасалады.</li>
+                                </ul>
+                            </article>
+                        </div>
                     </div>
                 </div>
 

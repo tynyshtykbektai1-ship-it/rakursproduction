@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const buildWhatsappLink = (dateLabel, slotLabel) => {
-        const text = `Здравствуйте! Хочу забронировать съемку на ${dateLabel} в ${slotLabel}.`;
+        const text = `Сәлеметсіз бе! ${dateLabel} күні ${slotLabel} уақытында түсірілімге бронь жасағым келеді.`;
         return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
     };
 
