@@ -628,6 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const localNav = vignetteModal.querySelector('.vp-sticky-nav');
         const localNavToggle = vignetteModal.querySelector('.vp-nav-toggle');
         const navLinks = vignetteModal.querySelectorAll('.vp-nav-link');
+        const locationsFab = vignetteModal.querySelector('[data-go-locations]');
         const bodyScroll = vignetteModal.querySelector('.vp-modal-body');
         const sections = vignetteModal.querySelectorAll('#vp-pricing, .vp-template-section');
         const pricingCards = vignetteModal.querySelectorAll('.vp-price-card.vp-reveal');
@@ -736,6 +737,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('no-scroll');
             closeLocalNav();
         };
+
+        if (locationsFab) {
+            locationsFab.addEventListener('click', (event) => {
+                event.preventDefault();
+                closeVignetteModal();
+
+                const locationsSection = document.getElementById('locations');
+                if (!locationsSection) {
+                    window.location.hash = 'locations';
+                    return;
+                }
+
+                const headerOffset = header ? header.offsetHeight + 8 : 88;
+                const top = locationsSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+            });
+        }
 
         vignetteCard.addEventListener('click', () => {
             vignetteModal.classList.add('visible');
