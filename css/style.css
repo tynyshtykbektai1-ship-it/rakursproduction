@@ -169,6 +169,23 @@ body.no-scroll {
     transition: var(--transition);
 }
 
+.mobile-booking-shortcut {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid rgba(176, 137, 104, 0.35);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: #5a4333;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 8px 18px rgba(24, 18, 12, 0.08);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -384,6 +401,9 @@ body.no-scroll {
         backdrop-filter: blur(8px);
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
     }
+    .mobile-booking-shortcut {
+        display: inline-flex;
+    }
     .burger-label { display: inline-block; }
     .burger.active .burger-lines span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .burger.active .burger-lines span:nth-child(2) { opacity: 0; }
@@ -571,6 +591,7 @@ body.no-scroll {
     pointer-events: none;
     background: rgba(18, 17, 15, 0.62);
     backdrop-filter: blur(14px);
+    overflow-x: hidden;
     transition: opacity 0.35s ease;
 }
 
@@ -581,7 +602,8 @@ body.no-scroll {
 
 .vp-modal-shell {
     position: relative;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 100dvh;
     min-height: 100dvh;
     border-radius: 0;
@@ -865,6 +887,14 @@ body.no-scroll {
     box-shadow: 0 18px 44px rgba(45, 37, 30, 0.08);
     padding: 34px 32px;
     margin: 4px 0 30px;
+}
+
+.vp-booking-section {
+    margin: 0 0 30px;
+}
+
+.vp-booking-section .booking-availability {
+    max-width: 100%;
 }
 
 .vp-pricing-header {
@@ -1200,22 +1230,23 @@ body.no-scroll {
     .vp-modal-shell {
         position: fixed;
         inset: 0;
-        width: 100vw;
+        width: 100%;
         height: 100dvh;
         max-height: 100dvh;
         border-radius: 0;
+        overflow-x: hidden;
     }
 
     .vp-close {
-        top: 14px;
-        right: 14px;
-        height: 40px;
-        padding: 0 11px;
+        top: 10px;
+        right: 10px;
+        height: 36px;
+        padding: 0 9px;
     }
 
     .vp-top-title {
-        padding: 12px 56px 8px;
-        font-size: 0.98rem;
+        padding: 12px 74px 8px 12px;
+        font-size: 0.94rem;
     }
 
     .vp-instagram-fab {
@@ -1256,6 +1287,7 @@ body.no-scroll {
         flex: 1 1 auto;
         min-height: 0;
         overflow-y: auto;
+        overflow-x: hidden;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         padding: 10px 12px 24px;
@@ -1320,14 +1352,17 @@ body.no-scroll {
 
     .vp-template-section {
         padding: 16px;
+        max-width: 100%;
     }
 
     .vp-book-core {
-        width: min(860px, calc(100vw - 34px));
+        width: 100%;
+        max-width: 100%;
     }
 
     .vp-album-item {
         padding: 16px 14px;
+        max-width: 100%;
     }
 
     .vp-book-core {
@@ -1345,14 +1380,24 @@ body.no-scroll {
 }
 
 @media (max-width: 520px) {
+    .mobile-booking-shortcut {
+        padding: 7px 10px;
+        font-size: 0.66rem;
+    }
+
     .vp-close {
-        min-width: 40px;
-        height: 40px;
-        padding: 0 10px;
+        min-width: 34px;
+        width: 34px;
+        height: 34px;
+        padding: 0;
     }
 
     .vp-close-text {
-        font-size: 0.84rem;
+        display: none;
+    }
+
+    .vp-close-icon {
+        font-size: 1.1rem;
     }
 
     .vp-instagram-fab {
@@ -1428,8 +1473,9 @@ body.no-scroll {
     }
 
     .vp-book-core {
-        width: calc(100vw - 24px);
-        min-height: 220px;
+        width: 100%;
+        max-width: 100%;
+        min-height: 0;
     }
 
     .vp-album-item h4 {

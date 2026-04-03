@@ -3,6 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav');
+    const mobileBookingShortcut = document.querySelector('[data-open-vignette-booking]');
+
+    const closeNavMenu = () => {
+        if (!nav.classList.contains('active')) {
+            return;
+        }
+        burger.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Открыть меню');
+
+        const burgerLabel = burger.querySelector('.burger-label');
+        if (burgerLabel) {
+            burgerLabel.textContent = 'Меню';
+        }
+    };
     
     // Toggle Menu
     burger.addEventListener('click', () => {
@@ -24,18 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-list a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if(nav.classList.contains('active')) {
-                burger.classList.remove('active');
-                nav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-                burger.setAttribute('aria-expanded', 'false');
-                burger.setAttribute('aria-label', 'Открыть меню');
-
-                const burgerLabel = burger.querySelector('.burger-label');
-                if (burgerLabel) {
-                    burgerLabel.textContent = 'Меню';
-                }
-            }
+            closeNavMenu();
         });
     });
 
@@ -627,10 +633,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (vignetteCard && vignetteModal) {
         const localNav = vignetteModal.querySelector('.vp-sticky-nav');
         const localNavToggle = vignetteModal.querySelector('.vp-nav-toggle');
-        const navLinks = vignetteModal.querySelectorAll('.vp-nav-link');
+        const vignetteNavLinks = vignetteModal.querySelectorAll('.vp-nav-link');
         const locationsFab = vignetteModal.querySelector('[data-go-locations]');
         const bodyScroll = vignetteModal.querySelector('.vp-modal-body');
-        const sections = vignetteModal.querySelectorAll('#vp-pricing, .vp-template-section');
+        const sections = vignetteModal.querySelectorAll('#vp-pricing, #vp-booking, .vp-template-section');
+        const openVignetteTriggers = document.querySelectorAll('[data-open-vignette]');
         const pricingCards = vignetteModal.querySelectorAll('.vp-price-card.vp-reveal');
         let pricingObserver = null;
 
@@ -686,13 +693,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const setActiveNav = (targetId) => {
-            navLinks.forEach((link) => {
+            vignetteNavLinks.forEach((link) => {
                 const isActive = link.dataset.scrollTarget === targetId;
                 link.classList.toggle('is-active', isActive);
             });
         };
 
-        navLinks.forEach((link) => {
+        vignetteNavLinks.forEach((link) => {
             link.addEventListener('click', () => {
                 const targetId = link.dataset.scrollTarget;
                 const target = vignetteModal.querySelector(`#${targetId}`);
@@ -705,6 +712,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeLocalNav();
             });
         });
+
+        const openVignetteModal = (targetId = 'vp-pricing') => {
+            vignetteModal.classList.add('visible');
+            vignetteModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('no-scroll');
+
+            if (bodyScroll) {
+                const target = vignetteModal.querySelector(`#${targetId}`);
+                const topOffset = target ? Math.max(target.offsetTop - 12, 0) : 0;
+                bodyScroll.scrollTo({ top: topOffset, behavior: 'auto' });
+            }
+
+            setActiveNav(targetId);
+            closeLocalNav();
+            if (!pricingObserver) {
+                revealPricingCards();
+            }
+        };
 
         if (bodyScroll && sections.length) {
             const syncActiveLink = () => {
@@ -760,19 +785,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        vignetteCard.addEventListener('click', () => {
-            vignetteModal.classList.add('visible');
-            vignetteModal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('no-scroll');
-            if (bodyScroll) {
-                bodyScroll.scrollTo({ top: 0, behavior: 'auto' });
-            }
-            setActiveNav('vp-pricing');
-            closeLocalNav();
-            if (!pricingObserver) {
-                revealPricingCards();
-            }
+        vignetteCard.addEventListener('click', () => openVignetteModal('vp-pricing'));
+
+        openVignetteTriggers.forEach((trigger) => {
+            trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                closeNavMenu();
+                openVignetteModal('vp-pricing');
+            });
         });
+
+        if (mobileBookingShortcut) {
+            mobileBookingShortcut.addEventListener('click', () => {
+                closeNavMenu();
+                openVignetteModal('vp-booking');
+            });
+        }
 
         if (closeVignetteBtn) {
             closeVignetteBtn.addEventListener('click', closeVignetteModal);

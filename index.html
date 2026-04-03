@@ -30,11 +30,14 @@
                     <li><a href="#services">Қызметтер</a></li>
                     <li><a href="#locations">Локациялар</a></li>
                     <li><a href="#booking">Брондау</a></li>
-                    <li><a href="#vignettes">Виньеткалар</a></li>
+                    <li><a href="#vignette-card" data-open-vignette="true">Виньеткалар</a></li>
                     <li><a href="#why-us">Неге бізді таңдайды</a></li>
                     <li><a href="#contacts">Байланыс</a></li>
                 </ul>
             </nav>
+            <button class="mobile-booking-shortcut" type="button" data-open-vignette-booking>
+                Бос уақыттарды білу
+            </button>
             <button class="burger" aria-label="Открыть меню" aria-expanded="false">
                 <span class="burger-label">Меню</span>
                 <span class="burger-lines" aria-hidden="true">
@@ -487,6 +490,7 @@
                     </button>
                     <div class="vp-nav-menu" id="vp-nav-menu">
                         <button type="button" class="vp-nav-link is-active" data-scroll-target="vp-pricing">Прайс лист</button>
+                        <button type="button" class="vp-nav-link" data-scroll-target="vp-booking">Брондау</button>
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-1">11-9 сынып(1-разворот)</button>
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-2">11-9(2-разворот)</button>
                         <button type="button" class="vp-nav-link" data-scroll-target="vp-template-3">Жас түлек</button>
@@ -565,6 +569,26 @@
                                     <li>Ұйымдастырушы мен мұғалімге тегін</li>
                                 </ul>
                             </div>
+                        </div>
+                    </section>
+
+                    <section class="vp-booking-section" id="vp-booking">
+                        <div class="booking-availability" aria-live="polite">
+                            <div class="booking-availability-head">
+                                <h3>Қолжетімді күндер мен уақыт интервалдары</h3>
+                                <p>Студия уақыты 09:00-22:00 аралығында. Батырманы басып, бос интервалдарды көріп, ыңғайлы уақытты WhatsApp арқылы бірден брондаңыз.</p>
+                            </div>
+
+                            <div class="booking-availability-toolbar">
+                                <button type="button" class="ba-button" data-booking-load>
+                                    <span class="ba-spinner" data-spinner hidden></span>
+                                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                                    <span>Бос уақыттарды білу</span>
+                                </button>
+                                <span class="ba-status" data-booking-status>Деректер жүктелмеген</span>
+                            </div>
+
+                            <div class="ba-result" data-booking-result></div>
                         </div>
                     </section>
 

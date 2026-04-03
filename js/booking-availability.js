@@ -1,17 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const widget = document.getElementById('booking-availability');
-    if (!widget) {
+    const widgets = document.querySelectorAll('.booking-availability');
+    if (!widgets.length) {
         return;
     }
 
-    const loadButton = widget.querySelector('[data-booking-load]');
-    const statusNode = widget.querySelector('[data-booking-status]');
-    const resultNode = widget.querySelector('[data-booking-result]');
-    const spinnerNode = loadButton ? loadButton.querySelector('[data-spinner]') : null;
+    const initWidget = (widget) => {
 
-    if (!loadButton || !statusNode || !resultNode || !spinnerNode) {
-        return;
-    }
+        const loadButton = widget.querySelector('[data-booking-load]');
+        const statusNode = widget.querySelector('[data-booking-status]');
+        const resultNode = widget.querySelector('[data-booking-result]');
+        const spinnerNode = loadButton ? loadButton.querySelector('[data-spinner]') : null;
+
+        if (!loadButton || !statusNode || !resultNode || !spinnerNode) {
+            return;
+        }
 
     const GOOGLE_SHEET_ID = '1nGFoaMd-Jf0G_g5sJHZNsvO8y8zRxNqMZSz8mcc2ovA';
     const SHEETS = [
@@ -128,21 +130,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return keys;
     };
 
-    const setStatus = (text) => {
-        statusNode.textContent = text;
-    };
+        const setStatus = (text) => {
+            statusNode.textContent = text;
+        };
 
-    const clearResult = () => {
-        resultNode.innerHTML = '';
-    };
+        const clearResult = () => {
+            resultNode.innerHTML = '';
+        };
 
-    const renderEmpty = (message) => {
-        clearResult();
-        const empty = document.createElement('div');
-        empty.className = 'ba-empty';
-        empty.textContent = message;
-        resultNode.appendChild(empty);
-    };
+        const renderEmpty = (message) => {
+            clearResult();
+            const empty = document.createElement('div');
+            empty.className = 'ba-empty';
+            empty.textContent = message;
+            resultNode.appendChild(empty);
+        };
 
     const parseGvizResponse = (rawText) => {
         const match = rawText.match(/google\.visualization\.Query\.setResponse\((.*)\);?$/s);
@@ -280,100 +282,105 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
     };
 
-    const renderAvailability = (days) => {
-        clearResult();
+        const renderAvailability = (days) => {
+            clearResult();
 
-        if (!days.length) {
-            renderEmpty('Бос интервалдар табылмады.');
-            return;
-        }
+            if (!days.length) {
+                renderEmpty('Бос интервалдар табылмады.');
+                return;
+            }
 
-        const grid = document.createElement('div');
-        grid.className = 'ba-grid';
+            const grid = document.createElement('div');
+            grid.className = 'ba-grid';
 
-        days.forEach((day) => {
-            const card = document.createElement('article');
-            card.className = 'ba-day-card';
+            days.forEach((day) => {
+                const card = document.createElement('article');
+                card.className = 'ba-day-card';
 
-            const dateTitle = document.createElement('h4');
-            dateTitle.className = 'ba-date';
-            dateTitle.textContent = day.label;
+                const dateTitle = document.createElement('h4');
+                dateTitle.className = 'ba-date';
+                dateTitle.textContent = day.label;
 
-            const slots = document.createElement('div');
-            slots.className = 'ba-slots';
+                const slots = document.createElement('div');
+                slots.className = 'ba-slots';
 
-            day.free.forEach((interval) => {
-                const slotLabel = `${minutesToTime(interval.start)}-${minutesToTime(interval.end)}`;
-                const slot = document.createElement('a');
-                slot.className = 'ba-slot';
-                slot.href = buildWhatsappLink(day.label, slotLabel);
-                slot.target = '_blank';
-                slot.rel = 'noopener noreferrer';
-                slot.textContent = slotLabel;
-                slot.title = 'WhatsApp арқылы брондау';
-                slots.appendChild(slot);
-            });
-
-            card.append(dateTitle, slots);
-            grid.appendChild(card);
-        });
-
-        resultNode.appendChild(grid);
-    };
-
-    const loadAvailability = async () => {
-        loadButton.disabled = true;
-        spinnerNode.hidden = false;
-        setStatus('Деректер жүктеліп жатыр...');
-        clearResult();
-
-        try {
-            const sheetsData = await Promise.all(SHEETS.map((sheet) => loadSheet(sheet.gid)));
-            const busyRows = sheetsData.flatMap((sheetData) => extractBusyIntervals(sheetData));
-
-            const busyByDate = new Map();
-            busyRows.forEach((row) => {
-                const list = busyByDate.get(row.dateKey) || [];
-                list.push({ start: row.start, end: row.end });
-                busyByDate.set(row.dateKey, list);
-            });
-
-            const calendarDateKeys = SHEETS.flatMap((sheet) => buildMonthDateKeys(sheet.year, sheet.month));
-            const uniqueDateKeys = [...new Set(calendarDateKeys)];
-            const todayStart = getTodayStart();
-
-            const availableDays = uniqueDateKeys.reduce((acc, dateKey) => {
-                const currentDate = keyToDate(dateKey);
-                if (currentDate < todayStart) {
-                    return acc;
-                }
-
-                const busyIntervals = mergeBusyIntervals(busyByDate.get(dateKey) || []);
-                const freeIntervals = calculateFreeIntervals(busyIntervals);
-
-                if (!freeIntervals.length) {
-                    return acc;
-                }
-
-                acc.push({
-                    dateKey,
-                    label: humanDate(dateKey),
-                    free: freeIntervals
+                day.free.forEach((interval) => {
+                    const slotLabel = `${minutesToTime(interval.start)}-${minutesToTime(interval.end)}`;
+                    const slot = document.createElement('a');
+                    slot.className = 'ba-slot';
+                    slot.href = buildWhatsappLink(day.label, slotLabel);
+                    slot.target = '_blank';
+                    slot.rel = 'noopener noreferrer';
+                    slot.textContent = slotLabel;
+                    slot.title = 'WhatsApp арқылы брондау';
+                    slots.appendChild(slot);
                 });
-                return acc;
-            }, []);
 
-            renderAvailability(availableDays);
-            setStatus(`Қолжетімді күндер: ${availableDays.length}`);
-        } catch (error) {
-            console.error(error);
-            renderEmpty('Кестені жүктеу мүмкін болмады. Кейінірек қайталап көріңіз.');
-            setStatus('Жүктеу қатесі');
-        } finally {
-            spinnerNode.hidden = true;
-            loadButton.disabled = false;
-        }
+                card.append(dateTitle, slots);
+                grid.appendChild(card);
+            });
+
+            resultNode.appendChild(grid);
+        };
+
+        const loadAvailability = async () => {
+            loadButton.disabled = true;
+            spinnerNode.hidden = false;
+            setStatus('Деректер жүктеліп жатыр...');
+            clearResult();
+
+            try {
+                const sheetsData = await Promise.all(SHEETS.map((sheet) => loadSheet(sheet.gid)));
+                const busyRows = sheetsData.flatMap((sheetData) => extractBusyIntervals(sheetData));
+
+                const busyByDate = new Map();
+                busyRows.forEach((row) => {
+                    const list = busyByDate.get(row.dateKey) || [];
+                    list.push({ start: row.start, end: row.end });
+                    busyByDate.set(row.dateKey, list);
+                });
+
+                const calendarDateKeys = SHEETS.flatMap((sheet) => buildMonthDateKeys(sheet.year, sheet.month));
+                const uniqueDateKeys = [...new Set(calendarDateKeys)];
+                const todayStart = getTodayStart();
+
+                const availableDays = uniqueDateKeys.reduce((acc, dateKey) => {
+                    const currentDate = keyToDate(dateKey);
+                    if (currentDate < todayStart) {
+                        return acc;
+                    }
+
+                    const busyIntervals = mergeBusyIntervals(busyByDate.get(dateKey) || []);
+                    const freeIntervals = calculateFreeIntervals(busyIntervals);
+
+                    if (!freeIntervals.length) {
+                        return acc;
+                    }
+
+                    acc.push({
+                        dateKey,
+                        label: humanDate(dateKey),
+                        free: freeIntervals
+                    });
+                    return acc;
+                }, []);
+
+                renderAvailability(availableDays);
+                setStatus(`Қолжетімді күндер: ${availableDays.length}`);
+            } catch (error) {
+                console.error(error);
+                renderEmpty('Кестені жүктеу мүмкін болмады. Кейінірек қайталап көріңіз.');
+                setStatus('Жүктеу қатесі');
+            } finally {
+                spinnerNode.hidden = true;
+                loadButton.disabled = false;
+            }
+        };
+
+        loadButton.addEventListener('click', loadAvailability);
     };
 
-    loadButton.addEventListener('click', loadAvailability);
+    widgets.forEach((widget) => {
+        initWidget(widget);
+    });
 });
