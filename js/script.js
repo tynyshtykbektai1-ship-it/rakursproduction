@@ -797,7 +797,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (mobileBookingShortcut) {
             mobileBookingShortcut.addEventListener('click', () => {
-                closeNavMenu();
+                const insideVignetteModal = !!mobileBookingShortcut.closest('#vignette-modal');
+                if (insideVignetteModal) {
+                    closeLocalNav();
+                } else {
+                    closeNavMenu();
+                }
                 openVignetteModal('vp-booking');
             });
         }

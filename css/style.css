@@ -835,6 +835,22 @@ body.no-scroll {
     font-weight: 600;
 }
 
+.vp-mobile-booking-shortcut {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(176, 137, 104, 0.45);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    color: #3e332b;
+    padding: 8px 12px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
 .vp-nav-toggle-bars {
     display: inline-flex;
     flex-direction: column;
@@ -1240,12 +1256,37 @@ body.no-scroll {
     .vp-close {
         top: 10px;
         right: 10px;
-        height: 36px;
-        padding: 0 9px;
+        width: 34px;
+        min-width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 10px;
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(47, 35, 27, 0.86);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(13, 10, 8, 0.34);
+        gap: 0;
+    }
+
+    .vp-close-icon {
+        font-size: 1.16rem;
+        transform: translateY(-1px);
+    }
+
+    .vp-close-text {
+        display: none;
+    }
+
+    .vp-close:hover {
+        transform: none;
+    }
+
+    .vp-close:active {
+        transform: scale(0.96);
     }
 
     .vp-top-title {
-        padding: 12px 74px 8px 12px;
+        padding: 12px 56px 8px 12px;
         font-size: 0.94rem;
     }
 
@@ -1294,11 +1335,16 @@ body.no-scroll {
     }
 
     .vp-sticky-nav {
-        justify-content: space-between;
+        justify-content: flex-start;
         padding: 10px 12px;
+        gap: 8px;
     }
 
     .vp-nav-toggle {
+        display: inline-flex;
+    }
+
+    .vp-mobile-booking-shortcut {
         display: inline-flex;
     }
 
@@ -1450,6 +1496,11 @@ body.no-scroll {
     .vp-sticky-nav {
         top: 0;
         padding: 8px 10px;
+    }
+
+    .vp-mobile-booking-shortcut {
+        padding: 7px 10px;
+        font-size: 0.64rem;
     }
 
     .vp-template-section {
