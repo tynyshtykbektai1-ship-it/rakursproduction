@@ -195,7 +195,7 @@ body.no-scroll {
     text-align: center;
     position: relative;
     /* Установите свое фоновое изображение в html файле (style="background-image: url('...');") или здесь */
-    background: #e0e0e0 url('../img/hero-bg.webp') center center/100% auto no-repeat;
+    background: #e0e0e0 url('../img/herobgphoto.jpeg') center center/100% auto no-repeat;
     color: #fff;
 }
 
