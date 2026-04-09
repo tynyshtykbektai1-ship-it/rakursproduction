@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const WORK_START = 9 * 60;
     const WORK_END = 22 * 60;
+    const DEFAULT_APPOINTMENT_DURATION = 120;
     const WHATSAPP_URL = 'https://wa.me/77713434499';
 
     const DATE_KEYS = ['дата', 'date', 'күн'];
@@ -207,15 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const rawStart = row[startIndex];
             const rawEnd = row[endIndex];
 
-            if (!rawDate || !rawStart || !rawEnd) {
+            if (!rawDate || !rawStart) {
                 return acc;
             }
 
             const dateInfo = parseDdMmYyyy(rawDate);
             const start = parseTimeToMinutes(rawStart);
-            const end = parseTimeToMinutes(rawEnd);
+            const end = rawEnd ? parseTimeToMinutes(rawEnd) : null;
 
-            if (!dateInfo || start === null || end === null || end <= start) {
+            if (!dateInfo || start === null) {
+                return acc;
+            }
+
+            if (end !== null && end <= start) {
                 return acc;
             }
 
@@ -224,6 +229,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 start,
                 end
             });
+
+            return acc;
+        }, []);
+    };
+
+    const estimateDefaultDuration = (intervals) => {
+        const durations = intervals
+            .filter((interval) => interval.end !== null)
+            .map((interval) => interval.end - interval.start)
+            .filter((duration) => duration > 0 && duration <= WORK_END - WORK_START)
+            .sort((a, b) => a - b);
+
+        if (!durations.length) {
+            return DEFAULT_APPOINTMENT_DURATION;
+        }
+
+        const middle = Math.floor(durations.length / 2);
+        if (durations.length % 2 === 0) {
+            return Math.round((durations[middle - 1] + durations[middle]) / 2);
+        }
+
+        return durations[middle];
+    };
+
+    const resolveOpenEndedIntervals = (intervals, defaultDuration) => {
+        if (!intervals.length) {
+            return [];
+        }
+
+        const sorted = [...intervals].sort((a, b) => a.start - b.start);
+
+        return sorted.reduce((acc, interval, index) => {
+            let resolvedEnd = interval.end;
+
+            if (resolvedEnd === null) {
+                const nextInterval = sorted.slice(index + 1).find((candidate) => candidate.start > interval.start);
+                resolvedEnd = nextInterval
+                    ? nextInterval.start
+                    : Math.min(interval.start + defaultDuration, WORK_END);
+            }
+
+            if (resolvedEnd > interval.start) {
+                acc.push({
+                    start: interval.start,
+                    end: resolvedEnd
+                });
+            }
 
             return acc;
         }, []);
@@ -332,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const sheetsData = await Promise.all(SHEETS.map((sheet) => loadSheet(sheet.gid)));
                 const busyRows = sheetsData.flatMap((sheetData) => extractBusyIntervals(sheetData));
+                const defaultDuration = estimateDefaultDuration(busyRows);
 
                 const busyByDate = new Map();
                 busyRows.forEach((row) => {
@@ -350,7 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         return acc;
                     }
 
-                    const busyIntervals = mergeBusyIntervals(busyByDate.get(dateKey) || []);
+                    const resolvedIntervals = resolveOpenEndedIntervals(busyByDate.get(dateKey) || [], defaultDuration);
+                    const busyIntervals = mergeBusyIntervals(resolvedIntervals);
                     const freeIntervals = calculateFreeIntervals(busyIntervals);
 
                     if (!freeIntervals.length) {
